@@ -1,5 +1,6 @@
 import React from "react";
 import all from "../Form.module.css";
+import {NavLink} from "react-router-dom";
 
 let Login = () => {
   return (
@@ -7,9 +8,9 @@ let Login = () => {
     <div className={all.head}>Войти</div>
     <div className={all.redirect}>
       <div className={all.redirect_text}>Новый пользователь?</div>
-      <a href="#2" className={all.redirect_link}>
+      <NavLink to="/regist" className={all.redirect_link}>
         Зарегистрируйтесь
-      </a>
+      </NavLink>
     </div>
     <label className={all.label}>
       <div className={all.label_title}>
@@ -25,7 +26,7 @@ let Login = () => {
         <input className={all.input}></input>
       </div>
     </label>
-    <button className={all.btn}>Войти</button>
+    <a href='/order' className={all.btn}>Войти</a>
   </form>
   );
 };

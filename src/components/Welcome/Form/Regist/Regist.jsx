@@ -1,6 +1,7 @@
 import React from "react";
 import all from "../Form.module.css";
 import own from "./Regist.module.css";
+import {NavLink} from "react-router-dom";
 
 let Regist = () => {
   return (
@@ -8,9 +9,9 @@ let Regist = () => {
       <div className={all.head}>Регистрация</div>
       <div className={all.redirect}>
         <div className={all.redirect_text}>Уже зарегистрирован?</div>
-        <a href="#2" className={all.redirect_link}>
+        <NavLink to="/login" className={all.redirect_link}>
           Войти
-        </a>
+        </NavLink>
       </div>
       <label className={all.label}>
         <div className={all.label_title}>
@@ -46,7 +47,7 @@ let Regist = () => {
           <input className={all.input}></input>
         </div>
       </label>
-      <button className={all.btn}>Зарегистрироваться</button>
+      <NavLink to='/login' className={all.btn}>Зарегистрироваться</NavLink>
     </form>
   );
 };

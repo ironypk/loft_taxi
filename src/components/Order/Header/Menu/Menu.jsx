@@ -6,9 +6,9 @@ let Menu = () => {
   return (
     <nav className={all.menu}>
       <ul className={all.menu__list}>
-        <Item item="Карта" />
-        <Item item="Профиль" />
-        <Item item="Войти" />
+        <Item href='/map' item="Карта" />
+        <Item href='/profile' item="Профиль" />
+        <Item href='/' item="Войти" />
       </ul>
     </nav>
   );

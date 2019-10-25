@@ -8,7 +8,7 @@ let Header = () => {
     <header className={all.header}>
       <div className={`${all.header__container} container`}>
         <div className="header__logo">
-          <Logo />
+          <Logo/>
         </div>
         <Menu />
       </div>
