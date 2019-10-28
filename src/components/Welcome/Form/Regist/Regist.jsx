@@ -3,15 +3,15 @@ import all from "../Form.module.css";
 import own from "./Regist.module.css";
 import {NavLink} from "react-router-dom";
 
-let Regist = () => {
+let Regist = (props) => {
   return (
-    <form className={all.form}>
+    <form onSubmit={props.setLoginPage} className={all.form}>
       <div className={all.head}>Регистрация</div>
       <div className={all.redirect}>
         <div className={all.redirect_text}>Уже зарегистрирован?</div>
-        <NavLink to="/login" className={all.redirect_link}>
+        <a onClick={props.setLoginPage} className={all.redirect_link}>
           Войти
-        </NavLink>
+        </a>
       </div>
       <label className={all.label}>
         <div className={all.label_title}>
@@ -47,7 +47,7 @@ let Regist = () => {
           <input className={all.input}></input>
         </div>
       </label>
-      <NavLink to='/login' className={all.btn}>Зарегистрироваться</NavLink>
+      <button  className={all.btn}>Зарегистрироваться</button>
     </form>
   );
 };

@@ -2,15 +2,15 @@ import React from "react";
 import all from "../Form.module.css";
 import {NavLink} from "react-router-dom";
 
-let Login = () => {
+let Login = (props) => {
   return (
-    <form className={all.form}>
+    <form onSubmit={props.setWelcomePage} className={all.form}>
     <div className={all.head}>Войти</div>
     <div className={all.redirect}>
       <div className={all.redirect_text}>Новый пользователь?</div>
-      <NavLink to="/regist" className={all.redirect_link}>
+      <a href="#" onClick={props.setRegistPage} className={all.redirect_link}>
         Зарегистрируйтесь
-      </NavLink>
+      </a>
     </div>
     <label className={all.label}>
       <div className={all.label_title}>
@@ -26,7 +26,7 @@ let Login = () => {
         <input className={all.input}></input>
       </div>
     </label>
-    <a href='/order' className={all.btn}>Войти</a>
+    <button className={all.btn}>Войти</button>
   </form>
   );
 };
