@@ -8,10 +8,10 @@ let Item = (props) => {
       <a 
         onClick={ () => {
           if (props.link === "login") {
-            props.setLoginPage();
+            props.setLogin('welcome');
           }
           else {
-            props.setLinkPage(props.link);
+            props.setPage(props.link);
           }
         }}
         className={all.item__link}

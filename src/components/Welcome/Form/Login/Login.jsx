@@ -2,13 +2,19 @@ import React from "react";
 import all from "../Form.module.css";
 import {NavLink} from "react-router-dom";
 
-let Login = (props) => {
+let Login = ({setPage, setForm}) => {
+  const onSubmit = e => {
+    e.preventDefault();
+    setPage('order');
+  }
   return (
-    <form onSubmit={props.setWelcomePage} className={all.form}>
+    <form onSubmit={onSubmit} className={all.form}>
     <div className={all.head}>Войти</div>
     <div className={all.redirect}>
       <div className={all.redirect_text}>Новый пользователь?</div>
-      <a href="#" onClick={props.setRegistPage} className={all.redirect_link}>
+      <a onClick={()=>{
+        setForm('regist')
+      }} className={all.redirect_link}>
         Зарегистрируйтесь
       </a>
     </div>

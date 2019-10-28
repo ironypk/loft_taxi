@@ -7,18 +7,10 @@ import { Route, BrowserRouter } from "react-router-dom";
 let App = () => {
   let [page, setPage] = useState("welcome");
 
-  let setWelcomePage = () => {
-    setPage("order");
-  };
-
-  let setLoginPage = () => {
-    setPage('welcome')
-  }
-
   return (
     <div className="App">
-      {page === "order" && <Order setLoginPage={setLoginPage} />}
-      {page === "welcome" && <Welcome setWelcomePage={setWelcomePage} />}
+      {page === "welcome" && <Welcome setPage={setPage}  />}
+      {page === "order" && <Order setLogin={setPage} />}
     </div>
   );
 };

@@ -5,16 +5,12 @@ import Maps from "../Map/Map";
 import Header from "./Header/Header";
 import { Route, BrowserRouter } from "react-router-dom";
 
-let Order = (props) => {
+let Order = ({setLogin}) => {
   let [page, setPage] = useState('map');
-
-  let setLinkPage = (link) =>{
-    setPage(link)
-  }
 
   return (
       <div className={all.order}>
-        <Header setLoginPage={props.setLoginPage} setLinkPage={setLinkPage} />
+        <Header setLogin={setLogin} setPage={setPage} />
         <div className="order__content">
           {page === 'map' && <Maps/> }
           {page === 'profile' && <Profile/> }
