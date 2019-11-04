@@ -1,13 +1,14 @@
 import React from "react";
 import all from "./Item.module.css";
-import { NavLink } from "react-router-dom";
+import { logoutActionCreator } from "../../../../../store";
 
 let Item = (props) => {
   return (
     <li className={all.item}>
       <a 
         onClick={ () => {
-          if (props.link === "login") {
+          if (props.link === "logout") {
+            props.dispatch(logoutActionCreator());
             props.setLogin('welcome');
           }
           else {
