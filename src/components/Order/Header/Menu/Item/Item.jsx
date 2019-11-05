@@ -1,6 +1,5 @@
 import React from "react";
 import all from "./Item.module.css";
-import { logoutActionCreator } from "../../../../../store";
 
 let Item = (props) => {
   return (
@@ -8,7 +7,7 @@ let Item = (props) => {
       <a 
         onClick={ () => {
           if (props.link === "logout") {
-            props.dispatch(logoutActionCreator());
+            props.logout();
             props.setLogin('welcome');
           }
           else {

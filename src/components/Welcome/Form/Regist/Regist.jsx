@@ -1,20 +1,42 @@
 import React from "react";
 import all from "../Form.module.css";
 import own from "./Regist.module.css";
-import {NavLink} from "react-router-dom";
 
-let Regist = ({setForm}) => {
+let Regist = (props) => {
   let onSubmit = e => {
     e.preventDefault();
-    setForm('login')
+    props.setForm('login')
   }
+
+  let registForm = React.createRef();
+
+  let updateUserName = () => {
+    let userName = registForm.current.elements.name.value;
+    props.updateUserName(userName);
+  };
+
+  let updateUserPass = () => {
+    let userPass = registForm.current.elements.pass.value;
+    props.updateUserPass(userPass);
+  };
+
+  let updateUserEmail = () => {
+    let userEmail = registForm.current.elements.email.value;
+    props.updateUserEmail(userEmail);
+  };
+
+  let updateUserSecondName = () => {
+    let userSecondName = registForm.current.elements.secondname.value;
+    props.updateUserSecondName(userSecondName);
+  };
+
   return (
-    <form onSubmit={onSubmit} className={all.form}>
+    <form ref={registForm} onSubmit={onSubmit} className={all.form}>
       <div className={all.head}>Регистрация</div>
       <div className={all.redirect}>
         <div className={all.redirect_text}>Уже зарегистрирован?</div>
         <a onClick={()=>{
-          setForm('login')
+          props.setForm('login')
         }} className={all.redirect_link}>
           Войти
         </a>
@@ -24,7 +46,7 @@ let Regist = ({setForm}) => {
           Адрес электронной почты
         </div>
         <div className={all.input_wrapper}>
-          <input className={all.input}></input>
+          <input onChange={updateUserEmail} required value={props.state.email} name='email' className={all.input}></input>
         </div>
       </label>
       <div className={own.user_data}>
@@ -33,7 +55,7 @@ let Regist = ({setForm}) => {
             Имя
           </div>
           <div className={all.input_wrapper}>
-            <input className={all.input}></input>
+            <input onChange={updateUserName} name='name' value={props.state.name} required className={all.input}></input>
           </div>
         </label>
         <label className={all.label}>
@@ -41,7 +63,7 @@ let Regist = ({setForm}) => {
             Фамилия
           </div>
           <div className={all.input_wrapper}>
-            <input className={all.input}></input>
+            <input onChange={updateUserSecondName} value={props.state.secondName} name='secondname' className={all.input}></input>
           </div>
         </label>
       </div>
@@ -50,7 +72,7 @@ let Regist = ({setForm}) => {
           Пароль
         </div>
         <div className={all.input_wrapper}>
-          <input className={all.input}></input>
+          <input onChange={updateUserPass} value={props.state.password} name='pass' className={all.input}></input>
         </div>
       </label>
       <button  className={all.btn}>Зарегистрироваться</button>

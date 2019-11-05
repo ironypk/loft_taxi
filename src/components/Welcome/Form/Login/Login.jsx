@@ -1,25 +1,22 @@
 import React from "react";
 import all from "../Form.module.css";
-import { loginActionCreator, updateUserNameActionCreator, updateUserPassActionCreator } from "../../../../store";
-
 
 let Login = (props) => {
   const onSubmit = e => {
     e.preventDefault();
-    props.dispatch(loginActionCreator());
+    props.login();
     props.setPage('order');
   }
-
   let loginForm = React.createRef();
 
   let updateUserName = () => {
     let userName = loginForm.current.elements.name.value;
-    props.dispatch(updateUserNameActionCreator(userName));
+    props.updateUserName(userName);
   }
 
   let updateUserPass = () => {
     let userPass = loginForm.current.elements.pass.value;
-    props.dispatch(updateUserPassActionCreator(userPass));
+    props.updateUserPass(userPass);
   }
 
   return (
@@ -41,13 +38,13 @@ let Login = (props) => {
         <label className={all.label}>
           <div className={all.label_title}>Имя пользователя*</div>
           <div className={all.input_wrapper}>
-            <input onChange = {updateUserName} value = {props.user.name} name='name' className={all.input} required></input>
+            <input onChange = {updateUserName} value = {props.state.name} name='name' className={all.input} required></input>
           </div>
         </label>
         <label className={all.label}>
           <div className={all.label_title}>Пароль*</div>
           <div className={all.input_wrapper}>
-            <input onChange = {updateUserPass} name='pass' className={all.input} value = {props.user.password} required></input>
+            <input onChange = {updateUserPass} name='pass' className={all.input} value = {props.state.password} required></input>
           </div>
         </label>
         <button className={all.btn}>Войти</button>
