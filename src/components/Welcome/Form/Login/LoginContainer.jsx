@@ -11,8 +11,7 @@ let LoginContainer = props => {
   return (
     <StoreContext.Consumer>
       {store => {
-        let state = store.getState().loginPage.user;
-
+        let state = store.getState().loginPage.user
         let login = () => {
           store.dispatch(loginActionCreator());
         };
