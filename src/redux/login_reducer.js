@@ -15,6 +15,7 @@ const loginReducer = (state, action) => {
       state.isLoggedIn = !state.isLoggedIn;
       return state;
     case LOGOUT:
+      console.log('logout')
       state.isLoggedIn = !state.isLoggedIn;
       state.name = "";
       state.password = "";

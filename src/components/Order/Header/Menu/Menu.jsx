@@ -6,9 +6,9 @@ let Menu = props => {
   return (
     <nav className={all.menu}>
       <ul className={all.menu__list}>
-        <ItemContainer setPage={props.setPage} link="map" item="Карта" />
-        <ItemContainer setPage={props.setPage} link="profile" item="Профиль" />
-        <ItemContainer setLogin={props.setLogin} link="logout" item="Выйти" />
+        <ItemContainer link="map" item="Карта" />
+        <ItemContainer link="profile" item="Профиль" />
+        <ItemContainer link="logout" item="Выйти" />
       </ul>
     </nav>
   );

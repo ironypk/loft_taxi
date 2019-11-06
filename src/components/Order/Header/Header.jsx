@@ -10,7 +10,7 @@ let Header = (props) => {
         <div className="header__logo">
           <Logo/>
         </div>
-        <Menu setLogin={props.setLogin} setPage={props.setPage} />
+        <Menu/>
       </div>
     </header>
   );

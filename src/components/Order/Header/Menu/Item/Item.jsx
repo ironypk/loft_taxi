@@ -1,23 +1,15 @@
 import React from "react";
 import all from "./Item.module.css";
-
-let Item = (props) => {
+import {Link} from "react-router-dom";
+let Item = props => {
   return (
     <li className={all.item}>
-      <a 
-        onClick={ () => {
-          if (props.link === "logout") {
-            props.logout();
-            props.setLogin('welcome');
-          }
-          else {
-            props.setPage(props.link);
-          }
-        }}
-        className={all.item__link}
-      >
-        {props.item}
-      </a>
+      <Link to={`${props.match.url}/${props.link}`}className={all.item__link} onClick={() =>{
+        if(props.link === 'logout'){
+          window.location = '/welcome';
+          props.logout()
+        }
+      }}>{props.item}</Link>
     </li>
   );
 };

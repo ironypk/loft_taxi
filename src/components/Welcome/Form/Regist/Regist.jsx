@@ -1,11 +1,11 @@
 import React from "react";
 import all from "../Form.module.css";
 import own from "./Regist.module.css";
+import {NavLink} from "react-router-dom";
 
 let Regist = (props) => {
   let onSubmit = e => {
     e.preventDefault();
-    props.setForm('login')
   }
 
   let registForm = React.createRef();
@@ -35,11 +35,9 @@ let Regist = (props) => {
       <div className={all.head}>Регистрация</div>
       <div className={all.redirect}>
         <div className={all.redirect_text}>Уже зарегистрирован?</div>
-        <a onClick={()=>{
-          props.setForm('login')
-        }} className={all.redirect_link}>
+        <NavLink to='/login' className={all.redirect_link}>
           Войти
-        </a>
+        </NavLink>
       </div>
       <label className={all.label}>
         <div className={all.label_title}>

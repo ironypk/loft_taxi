@@ -8,7 +8,7 @@ import {
   updateUserSecondNameActionCreator
 } from "../../../../redux/regist_reducer";
 
-let RegistContainer = props => {
+let RegistContainer = () => {
   return (
     <StoreContext.Consumer>
       {store => {
@@ -28,13 +28,14 @@ let RegistContainer = props => {
         };
         return (
           <Regist
-            updateUserName={updateUserName}
-            updateUserPass={updateUserPass}
-            updateUserEmail={updateUserEmail}
-            updateUserSecondName={updateUserSecondName}
-            state={state}
-            setForm={props.setForm}
-          />
+          updateUserName={updateUserName}
+          updateUserPass={updateUserPass}
+          updateUserEmail={updateUserEmail}
+          updateUserSecondName={updateUserSecondName}
+          state={state}
+        />
+
+
         );
       }}
     </StoreContext.Consumer>

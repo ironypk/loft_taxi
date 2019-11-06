@@ -6,12 +6,11 @@ import {
 } from "../../../../redux/login_reducer";
 import Login from "./Login";
 import StoreContext from "./../../../../StoreContext";
-
-let LoginContainer = props => {
+let LoginContainer = () => {
   return (
     <StoreContext.Consumer>
       {store => {
-        let state = store.getState().loginPage.user
+        let state = store.getState().loginPage.user;
         let login = () => {
           store.dispatch(loginActionCreator());
         };
@@ -24,10 +23,8 @@ let LoginContainer = props => {
           store.dispatch(updateUserPassActionCreator(userPass));
         };
         return (
-          <Login
+            <Login
             state={state}
-            setPage={props.setPage}
-            setForm={props.setForm}
             login={login}
             updateUserName={updateUserName}
             updateUserPass={updateUserPass}

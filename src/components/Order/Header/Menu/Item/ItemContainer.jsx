@@ -2,6 +2,7 @@ import React from "react";
 import { logoutActionCreator } from "../../../../../redux/login_reducer";
 import Item from "./Item";
 import StoreContext from "../../../../../StoreContext";
+import { Route } from "react-router-dom";
 
 let ItemContainer = (props) => {
   return (
@@ -10,7 +11,9 @@ let ItemContainer = (props) => {
         let logout = () => {
           store.dispatch(logoutActionCreator());
         }
-        return <Item setPage={props.setPage} setLogin={props.setLogin} link={props.link} item={props.item} logout={logout}/>
+        return <Route render={({match})=>(
+          <Item match={match} link={props.link} item={props.item} logout={logout}/>
+        )}/>
       }}
     </StoreContext.Consumer>
   );
