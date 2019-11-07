@@ -1,38 +1,32 @@
-import React from "react";
 import {
   loginActionCreator,
   updateUserNameActionCreator,
   updateUserPassActionCreator
 } from "../../../../redux/login_reducer";
 import Login from "./Login";
-import StoreContext from "./../../../../StoreContext";
-let LoginContainer = () => {
-  return (
-    <StoreContext.Consumer>
-      {store => {
-        let state = store.getState().loginPage.user;
-        let login = () => {
-          store.dispatch(loginActionCreator());
-        };
+import { Route } from "react-router-dom";
+import { connect } from "react-redux";
 
-        let updateUserName = userName => {
-          store.dispatch(updateUserNameActionCreator(userName));
-        };
+let mapStateToProps = (state) => {
+    return {
+      state : state.loginPage.user
+    }
+}
 
-        let updateUserPass = userPass => {
-          store.dispatch(updateUserPassActionCreator(userPass));
-        };
-        return (
-            <Login
-            state={state}
-            login={login}
-            updateUserName={updateUserName}
-            updateUserPass={updateUserPass}
-          />
-        );
-      }}
-    </StoreContext.Consumer>
-  );
-};
+let mapDispatchToProps = (dispatch) => {
+  return {
+    updateUserName : (userName) => {
+      dispatch(updateUserNameActionCreator(userName))
+    },
+    updateUserPass : (userPass) => {
+      dispatch(updateUserPassActionCreator(userPass));
+    },
+    login : () => {
+      dispatch(loginActionCreator());
+    }
+  }
+}
+
+const LoginContainer = connect(mapStateToProps,mapDispatchToProps)(Login);
 
 export default LoginContainer;

@@ -3,22 +3,30 @@ const UPDATE_USER_PASS = "UPDATE-USER-PASS";
 const LOGIN = "LOGIN";
 const LOGOUT = "LOGOUT";
 
-const loginReducer = (state, action) => {
+
+let initialState = {
+  user: {
+  name: "",
+  password: "",
+  isLoggedIn: false
+  }
+}
+
+const loginReducer = (state = initialState, action) => {
   switch (action.type) {
     case UPDATE_USER_NAME:
-      state.name = action.name;
+      state.user.name = action.name;
       return state;
     case UPDATE_USER_PASS:
-      state.password = action.pass;
+      state.user.password = action.pass;
       return state;
     case LOGIN:
-      state.isLoggedIn = !state.isLoggedIn;
+      state.user.isLoggedIn = !state.user.isLoggedIn;
       return state;
     case LOGOUT:
-      console.log('logout')
-      state.isLoggedIn = !state.isLoggedIn;
-      state.name = "";
-      state.password = "";
+      state.user.isLoggedIn = !state.user.isLoggedIn;
+      state.user.name = "";
+      state.user.password = "";
       return state;
     default :
         return state;

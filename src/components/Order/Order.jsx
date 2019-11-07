@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import all from "./Order.module.css";
 import Profile from "../Profile/Profile";
 import Maps from "../Map/Map";
 import Header from "./Header/Header";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 
 let Order = ({ match }) => {
   return (

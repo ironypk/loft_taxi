@@ -1,6 +1,6 @@
 import React from "react";
 import all from "../Form.module.css";
-import {NavLink} from "react-router-dom";
+import {Link} from "react-router-dom";
 
 let Login = props => {
   const onSubmit = e => {
@@ -25,9 +25,9 @@ let Login = props => {
       <div className={all.head}>Войти</div>
       <div className={all.redirect}>
         <div className={all.redirect_text}>Новый пользователь?</div>
-        <NavLink to='/regist' className={all.redirect_link}>
+        <Link to={`${props.match.url}/regist`} className={all.redirect_link}>
           Зарегистрируйтесь
-        </NavLink>
+        </Link>
       </div>
       <label className={all.label}>
         <div className={all.label_title}>Имя пользователя*</div>

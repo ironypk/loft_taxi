@@ -1,22 +1,32 @@
-const UPDATE_USER_NAME = "UPDATE-USER-NAME";
-const UPDATE_USER_PASS = "UPDATE-USER-PASS";
-const UPDATE_USER_SECODNAME = "UPDATE_USER_SECONAME";
-const UPDATE_USER_EMAIL = "EMAIL";
+const UPDATE_USER_NAME = "UPDATE-USER-REG-NAME";
+const UPDATE_USER_PASS = "UPDATE-USER-REG-PASS";
+const UPDATE_USER_SECODNAME = "UPDATE_USER_REG-SECONDNREG-AME";
+const UPDATE_USER_EMAIL = "REG-EMAIL";
 const REGIST = "REGIST";
 
-const registReducer = (state, action) => {
+
+let initialState = {
+  user : {
+    email : '',
+    name : '',
+    secondName : '',
+    password: ''
+  }
+}
+
+const registReducer = (state = initialState, action) => {
   switch (action.type) {
     case UPDATE_USER_NAME:
-      state.name = action.name;
+      state.user.name = action.name;
       return state;
     case UPDATE_USER_PASS:
-      state.password = action.pass;
+      state.user.password = action.pass;
       return state;
     case UPDATE_USER_SECODNAME:
-      state.secondName = action.secondName;
+      state.user.secondName = action.secondName;
       return state;
     case UPDATE_USER_EMAIL:
-      state.email= action.email;
+      state.user.email= action.email;
       return state;
 
     default:

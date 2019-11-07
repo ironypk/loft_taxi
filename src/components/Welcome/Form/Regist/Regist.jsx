@@ -1,13 +1,12 @@
 import React from "react";
 import all from "../Form.module.css";
 import own from "./Regist.module.css";
-import {NavLink} from "react-router-dom";
+import {Link} from "react-router-dom";
 
 let Regist = (props) => {
   let onSubmit = e => {
     e.preventDefault();
   }
-
   let registForm = React.createRef();
 
   let updateUserName = () => {
@@ -35,9 +34,9 @@ let Regist = (props) => {
       <div className={all.head}>Регистрация</div>
       <div className={all.redirect}>
         <div className={all.redirect_text}>Уже зарегистрирован?</div>
-        <NavLink to='/login' className={all.redirect_link}>
+        <Link to={`/login`} className={all.redirect_link}>
           Войти
-        </NavLink>
+        </Link>
       </div>
       <label className={all.label}>
         <div className={all.label_title}>
