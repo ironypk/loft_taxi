@@ -1,9 +1,11 @@
 import React from "react";
-import ReactDom from 'react-dom';
-import { Router } from 'react-router-dom'
+import ReactDOM from 'react-dom';
 import App from './App'
-import { createMemoryHistory } from 'history'
-import Welcome from './components/Welcome/Welcome'
-import {render, fireEvent } from '@testing-library/react'
-import '@testing-library/jest-dom'
+// import '@testing-library/jest-dom'
 
+
+it('renders without crashing', () => {
+    const div = document.createElement('div');
+    ReactDOM.render(<App />, div);
+    ReactDOM.unmountComponentAtNode(div);
+  });
