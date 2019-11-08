@@ -4,12 +4,11 @@ import {
   updateUserPassActionCreator
 } from "../../../../redux/login_reducer";
 import Login from "./Login";
-import { Route } from "react-router-dom";
 import { connect } from "react-redux";
 
 let mapStateToProps = (state) => {
     return {
-      state : state.loginPage.user
+      state : state.loginPage
     }
 }
 
