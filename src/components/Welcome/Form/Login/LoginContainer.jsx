@@ -14,8 +14,8 @@ let mapStateToProps = (state) => {
 
 let mapDispatchToProps = (dispatch) => {
   return {
-    updateUserName : (userName) => {
-      dispatch(updateUserNameActionCreator(userName))
+    updateUserName : (userEmail) => {
+      dispatch(updateUserNameActionCreator(userEmail))
     },
     updateUserPass : (userPass) => {
       dispatch(updateUserPassActionCreator(userPass));

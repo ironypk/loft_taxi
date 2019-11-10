@@ -2,12 +2,35 @@ import React from "react";
 import all from "../Form.module.css";
 import own from "./Regist.module.css";
 import {Link} from "react-router-dom";
+import * as Axios from "axios";
+import { useHistory} from "react-router-dom";
+
+
+
 
 let Regist = (props) => {
+
+  let history = useHistory();
+  
   let onSubmit = e => {
     e.preventDefault();
+    props.regist();
+    regist(props.state)
+    
   }
   let registForm = React.createRef();
+
+  let  regist = async (user) => {
+      const {data : {token,error}} = await Axios.post('https://loft-taxi.glitch.me/register', user);
+      if(error !== undefined){
+        alert(error)
+      } else{
+        localStorage.setItem("token", token);
+        history.push('/welcome')
+      }
+  }
+
+  
 
   let updateUserName = () => {
     let userName = registForm.current.elements.name.value;
@@ -25,8 +48,8 @@ let Regist = (props) => {
   };
 
   let updateUserSecondName = () => {
-    let userSecondName = registForm.current.elements.secondname.value;
-    props.updateUserSecondName(userSecondName);
+    let userSurname = registForm.current.elements.surname.value;
+    props.updateUserSecondName(userSurname);
   };
 
   return (
@@ -34,7 +57,7 @@ let Regist = (props) => {
       <div className={all.head}>Регистрация</div>
       <div className={all.redirect}>
         <div className={all.redirect_text}>Уже зарегистрирован?</div>
-        <Link to={`/login`} className={all.redirect_link}>
+        <Link to={`/welcome`} className={all.redirect_link}>
           Войти
         </Link>
       </div>
@@ -60,7 +83,7 @@ let Regist = (props) => {
             Фамилия
           </div>
           <div className={all.input_wrapper}>
-            <input onChange={updateUserSecondName} value={props.state.secondName} name='secondname' className={all.input}></input>
+            <input onChange={updateUserSecondName} value={props.state.surname} name='surname' className={all.input}></input>
           </div>
         </label>
       </div>

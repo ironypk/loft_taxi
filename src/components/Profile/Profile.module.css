@@ -1,0 +1,73 @@
+.payment {
+  padding: 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.payment__header {
+  margin-bottom: 50px;
+  text-align: center;
+}
+.payment__head {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.payment__card_wrapper {
+  display: flex;
+}
+
+.card {
+  padding: 40px 35px;
+  border-radius: 10px;
+  box-shadow: 0px 6px 20px 0 rgba(0, 0, 0, 0.15);
+  margin-bottom:50px;
+}
+
+.card_front{
+    margin-right:30px;
+}
+
+.btn{
+    font-size: 21px;
+    padding:18px 54px;
+    border-radius: 4px;
+    background-color: #ffc617;
+    border:none;
+}
+
+.card__row{
+    display: block;
+    width:100%;
+}
+
+.card .card__row:not(:last-child){
+    margin-bottom:35px;
+}
+
+
+.card__row_title{
+    font-size: 15px;
+    color: #747474;
+    margin-bottom:8px;
+}
+
+
+.card__input{
+    width:100%;
+    font-size: 24px;
+    color:#323232;
+    padding:9px 0;
+    border: none;
+    outline: none;
+}
+
+.card__input_wrapper{
+    border-bottom: 1px solid #eaeaea;
+}
+
+
+.card__input_wrapper:hover, .card__input_wrapper:focus-within{
+    border-bottom: 2px solid #1473e6;
+}

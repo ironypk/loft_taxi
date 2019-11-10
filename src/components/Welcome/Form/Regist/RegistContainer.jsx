@@ -3,7 +3,8 @@ import {
   updateUserNameActionCreator,
   updateUserPassActionCreator,
   updateUserEmailActionCreator,
-  updateUserSecondNameActionCreator
+  updateUserSecondNameActionCreator,
+  registActionCreator
 } from "../../../../redux/regist_reducer";
 import { Route } from "react-router-dom";
 import { connect } from "react-redux";
@@ -25,8 +26,11 @@ let mapDispatchToProps = dispatch => {
     updateUserEmail: userEmail => {
       dispatch(updateUserEmailActionCreator(userEmail));
     },
-    updateUserSecondName: userSecondName => {
-      dispatch(updateUserSecondNameActionCreator(userSecondName));
+    updateUserSecondName: surname => {
+      dispatch(updateUserSecondNameActionCreator(surname));
+    },
+    regist : () => {
+      dispatch(registActionCreator());
     }
   };
 };

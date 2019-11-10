@@ -1,24 +1,40 @@
 import React from "react";
 import all from "../Form.module.css";
 import {Link} from "react-router-dom";
+import * as Axios from "axios";
+import { useHistory} from "react-router-dom";
 
 let Login = props => {
+
+  let history = useHistory();
+
   const onSubmit = e => {
     e.preventDefault();
-    props.login();
-    window.location = '/order';
+    // props.login();
+    login(props.state.user);
   };
   let loginForm = React.createRef();
 
   let updateUserName = () => {
-    let userName = loginForm.current.elements.name.value;
-    props.updateUserName(userName);
+    let userEmail = loginForm.current.elements.email.value;
+    props.updateUserName(userEmail);
   };
 
   let updateUserPass = () => {
     let userPass = loginForm.current.elements.pass.value;
     props.updateUserPass(userPass);
   };
+
+
+  let  login  = async (user) => {
+    const {data : {token,error}} = await Axios.post('https://loft-taxi.glitch.me/auth', user);
+    if(error !== undefined){
+      alert(error)
+    } else{
+      localStorage.setItem("token", token);
+      history.push('/order')
+    }
+}
 
   return (
     <form ref={loginForm} onSubmit={onSubmit} className={all.form}>
@@ -30,12 +46,12 @@ let Login = props => {
         </Link>
       </div>
       <label className={all.label}>
-        <div className={all.label_title}>Имя пользователя*</div>
+        <div className={all.label_title}>Email пользователя*</div>
         <div className={all.input_wrapper}>
           <input
             onChange={updateUserName}
-            value={props.state.name}
-            name="name"
+            value={props.state.email}
+            name="email"
             className={all.input}
             required
           ></input>

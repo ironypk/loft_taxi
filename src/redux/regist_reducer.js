@@ -1,14 +1,14 @@
 const UPDATE_USER_NAME = "UPDATE-USER-REG-NAME";
 const UPDATE_USER_PASS = "UPDATE-USER-REG-PASS";
-const UPDATE_USER_SECODNAME = "UPDATE_USER_REG-SECONDNREG-AME";
+const UPDATE_USER_SURNAME = "UPDATE_USER_REG-SURNAME";
 const UPDATE_USER_EMAIL = "REG-EMAIL";
-// const REGIST = "REGIST";
+const REGIST = "REGIST";
 
 let initialState = {
   user: {
     email: "",
     name: "",
-    secondName: "",
+    surname: "",
     password: ""
   }
 };
@@ -32,12 +32,12 @@ const registReducer = (state = initialState, action) => {
         }
       };
 
-    case UPDATE_USER_SECODNAME:
+    case UPDATE_USER_SURNAME:
       return {
         ...state,
         user: {
           ...state.user,
-          secondName: action.secondName
+          surname: action.surname
         }
       };
 
@@ -48,6 +48,11 @@ const registReducer = (state = initialState, action) => {
           ...state.user,
           email: action.email
         }
+      };
+
+    case REGIST:
+      return {
+        ...state
       };
 
     default:
@@ -70,9 +75,13 @@ export const updateUserEmailActionCreator = userEmail => ({
   email: userEmail
 });
 
-export const updateUserSecondNameActionCreator = userSecondName => ({
-  type: UPDATE_USER_SECODNAME,
-  secondName: userSecondName
+export const updateUserSecondNameActionCreator = surname => ({
+  type: UPDATE_USER_SURNAME,
+  surname: surname
+});
+
+export const registActionCreator = () => ({
+  type: REGIST
 });
 
 export default registReducer;

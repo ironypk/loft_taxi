@@ -1,11 +1,11 @@
-const UPDATE_USER_NAME = "UPDATE-USER-NAME";
+const UPDATE_USER_EMAIL = "UPDATE-USER-EMAIL";
 const UPDATE_USER_PASS = "UPDATE-USER-PASS";
 const LOGIN = "LOGIN";
 const LOGOUT = "LOGOUT";
 
 let initialState = {
   user: {
-    name: "",
+    email: "",
     password: ""
   },
   isLoggedIn: false
@@ -13,13 +13,13 @@ let initialState = {
 
 const loginReducer = (state = initialState, action) => {
   switch (action.type) {
-    case UPDATE_USER_NAME:
+    case UPDATE_USER_EMAIL:
       return {
         ...state,
         isLoggedIn: !state.isLoggedIn,
         user: {
           ...state.user,
-          name: action.name
+          email: action.email
         }
       };
 
@@ -35,15 +35,15 @@ const loginReducer = (state = initialState, action) => {
     case LOGIN:
       return {
         ...state,
-        isLoggedIn: !state.isLoggedIn
+        isLoggedIn: true
       };
     case LOGOUT:
       return {
         ...state,
-        isLoggedIn: !state.isLoggedIn,
+        isLoggedIn: false,
         user: {
           ...state.user,
-          name: "",
+          email: "",
           password: ""
         }
       };
@@ -52,9 +52,9 @@ const loginReducer = (state = initialState, action) => {
   }
 };
 
-export const updateUserNameActionCreator = userName => ({
-  type: UPDATE_USER_NAME,
-  name: userName
+export const updateUserNameActionCreator = userEmail => ({
+  type: UPDATE_USER_EMAIL,
+  email: userEmail
 });
 
 export const updateUserPassActionCreator = userPass => ({
