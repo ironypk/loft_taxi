@@ -10,7 +10,7 @@ let Login = props => {
 
   const onSubmit = e => {
     e.preventDefault();
-    // props.login();
+    props.login();
     login(props.state.user);
   };
   let loginForm = React.createRef();

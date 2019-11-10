@@ -54,5 +54,9 @@ code {
     monospace;
 }
 
+input[type=number]::-webkit-inner-spin-button {
+  display: none;
+}
+
 @import './style/fonts.css';
 
