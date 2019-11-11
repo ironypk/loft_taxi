@@ -1,24 +1,13 @@
 import React from "react";
 import style from "./Profile.module.css";
-import * as Axios from "axios";
 
 let Profile = props => {
   
   let onSubmit = e => {
     e.preventDefault();
     props.saveCard();
-    saveCard(props.state)
   };
 
-
-  let  saveCard  = async (card) => {
-    const {data : {error}} = await Axios.post('https://loft-taxi.glitch.me/card', card);
-    if(error !== undefined){
-      alert(error)
-    } else{
-      alert('Карта Сохранена')
-    }
-}
 
   let profileForm = React.createRef();
 

@@ -1,3 +1,4 @@
+import {createAction} from 'redux-actions'
 const UPDATE_USER_EMAIL = "UPDATE-USER-EMAIL";
 const UPDATE_USER_PASS = "UPDATE-USER-PASS";
 const LOGIN = "LOGIN";
@@ -16,10 +17,9 @@ const loginReducer = (state = initialState, action) => {
     case UPDATE_USER_EMAIL:
       return {
         ...state,
-        isLoggedIn: !state.isLoggedIn,
         user: {
           ...state.user,
-          email: action.email
+          email: action.payload
         }
       };
 
@@ -28,7 +28,7 @@ const loginReducer = (state = initialState, action) => {
         ...state,
         user: {
           ...state.user,
-          password: action.pass
+          password: action.payload
         }
       };
 
@@ -52,22 +52,12 @@ const loginReducer = (state = initialState, action) => {
   }
 };
 
-export const updateUserNameActionCreator = userEmail => ({
-  type: UPDATE_USER_EMAIL,
-  email: userEmail
-});
+export const updateUserNameActionCreator = createAction(UPDATE_USER_EMAIL)
 
-export const updateUserPassActionCreator = userPass => ({
-  type: UPDATE_USER_PASS,
-  pass: userPass
-});
+export const updateUserPassActionCreator = createAction(UPDATE_USER_PASS)
 
-export const loginActionCreator = () => ({
-  type: LOGIN
-});
+export const loginActionCreator = createAction(LOGIN)
 
-export const logoutActionCreator = () => ({
-  type: LOGOUT
-});
+export const logoutActionCreator = createAction(LOGOUT)
 
 export default loginReducer;

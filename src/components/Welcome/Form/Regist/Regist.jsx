@@ -2,33 +2,20 @@ import React from "react";
 import all from "../Form.module.css";
 import own from "./Regist.module.css";
 import {Link} from "react-router-dom";
-import * as Axios from "axios";
-import { useHistory} from "react-router-dom";
-
 
 
 
 let Regist = (props) => {
 
-  let history = useHistory();
   
   let onSubmit = e => {
     e.preventDefault();
     props.regist();
-    regist(props.state)
-    
   }
+
   let registForm = React.createRef();
 
-  let  regist = async (user) => {
-      const {data : {token,error}} = await Axios.post('https://loft-taxi.glitch.me/register', user);
-      if(error !== undefined){
-        alert(error)
-      } else{
-        localStorage.setItem("token", token);
-        history.push('/welcome')
-      }
-  }
+
 
   
 

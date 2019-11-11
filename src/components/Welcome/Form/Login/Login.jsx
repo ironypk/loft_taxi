@@ -1,17 +1,14 @@
 import React from "react";
 import all from "../Form.module.css";
 import {Link} from "react-router-dom";
-import * as Axios from "axios";
 import { useHistory} from "react-router-dom";
 
 let Login = props => {
 
-  let history = useHistory();
 
   const onSubmit = e => {
     e.preventDefault();
     props.login();
-    login(props.state.user);
   };
   let loginForm = React.createRef();
 
@@ -26,15 +23,7 @@ let Login = props => {
   };
 
 
-  let  login  = async (user) => {
-    const {data : {token,error}} = await Axios.post('https://loft-taxi.glitch.me/auth', user);
-    if(error !== undefined){
-      alert(error)
-    } else{
-      localStorage.setItem("token", token);
-      history.push('/order')
-    }
-}
+
 
   return (
     <form ref={loginForm} onSubmit={onSubmit} className={all.form}>

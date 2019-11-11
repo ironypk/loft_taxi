@@ -1,3 +1,4 @@
+import {createAction} from 'redux-actions'
 const UPDATE_USER_NAME = "UPDATE-USER-REG-NAME";
 const UPDATE_USER_PASS = "UPDATE-USER-REG-PASS";
 const UPDATE_USER_SURNAME = "UPDATE_USER_REG-SURNAME";
@@ -20,7 +21,7 @@ const registReducer = (state = initialState, action) => {
         ...state,
         user: {
           ...state.user,
-          name: action.name
+          name: action.payload
         }
       };
     case UPDATE_USER_PASS:
@@ -28,7 +29,7 @@ const registReducer = (state = initialState, action) => {
         ...state,
         user: {
           ...state.user,
-          password: action.pass
+          password: action.payload
         }
       };
 
@@ -37,7 +38,7 @@ const registReducer = (state = initialState, action) => {
         ...state,
         user: {
           ...state.user,
-          surname: action.surname
+          surname: action.payload
         }
       };
 
@@ -46,7 +47,7 @@ const registReducer = (state = initialState, action) => {
         ...state,
         user: {
           ...state.user,
-          email: action.email
+          email: action.payload
         }
       };
 
@@ -60,28 +61,14 @@ const registReducer = (state = initialState, action) => {
   }
 };
 
-export const updateUserNameActionCreator = userName => ({
-  type: UPDATE_USER_NAME,
-  name: userName
-});
+export const updateUserNameActionCreator = createAction(UPDATE_USER_NAME);
 
-export const updateUserPassActionCreator = userPass => ({
-  type: UPDATE_USER_PASS,
-  pass: userPass
-});
+export const updateUserPassActionCreator = createAction(UPDATE_USER_PASS);
 
-export const updateUserEmailActionCreator = userEmail => ({
-  type: UPDATE_USER_EMAIL,
-  email: userEmail
-});
+export const updateUserEmailActionCreator = createAction(UPDATE_USER_EMAIL);
 
-export const updateUserSecondNameActionCreator = surname => ({
-  type: UPDATE_USER_SURNAME,
-  surname: surname
-});
+export const updateUserSecondNameActionCreator = createAction(UPDATE_USER_SURNAME);
 
-export const registActionCreator = () => ({
-  type: REGIST
-});
+export const registActionCreator = createAction(REGIST);
 
 export default registReducer;

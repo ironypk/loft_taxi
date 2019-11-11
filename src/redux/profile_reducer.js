@@ -1,8 +1,11 @@
+import {createAction} from 'redux-actions'
+
 const UPDATE_CARD_NUMBER = "UPDATE_CARD_NUMBER";
 const UPDATE_EXPIRY_DATE = "UPDATE_EXPIRY_DATE";
 const UPDATE_CARD_NAME = "UPDATE_CARD_NAME";
 const UPDATE_CVC = "UPDATE_CVC";
 const SAVE_CARD ='SAVE_CARD';
+const CLEAR_CARD = 'CLEAR_CARD';
 
 let initialState = {
   cardNumber: "",
@@ -17,60 +20,55 @@ const profileReducer = (state = initialState, action) => {
     case UPDATE_CARD_NUMBER:
       return {
         ...state,
-        cardNumber: action.cardNumber
+        cardNumber: action.payload
       };
     case UPDATE_EXPIRY_DATE:
       return {
         ...state,
-        expiryDate: action.expiryDate
+        expiryDate: action.payload
       };
     case UPDATE_CARD_NAME:
       return {
         ...state,
-        cardName: action.cardName
+        cardName: action.payload
       };
     case UPDATE_CVC:
       return {
         ...state,
-        cvc: action.cvc
+        cvc: action.payload
       };
 
     case SAVE_CARD: {
         return {
-            ...state,
-            cardNumber: "",
-            expiryDate: "",
-            cardName: "",
-            cvc: ""
+            ...state
         }
+    }
+
+    case CLEAR_CARD : {
+      return {
+        ...state,
+        cardNumber: "",
+        expiryDate: "",
+        cardName: "",
+        cvc: ""
+      }
     }
     default:
       return state;
   }
 };
 
-export const updateCardNumberActionCreator = cardNumber => ({
-  type: UPDATE_CARD_NUMBER,
-  cardNumber: cardNumber
-});
+export const updateCardNumberActionCreator = createAction(UPDATE_CARD_NUMBER);
 
-export const updateExpiryDateActionCreator = expiryDate => ({
-  type: UPDATE_EXPIRY_DATE,
-  expiryDate: expiryDate
-});
+export const updateExpiryDateActionCreator = createAction(UPDATE_EXPIRY_DATE);
 
-export const updateCardNameActionCreator = cardName => ({
-  type: UPDATE_CARD_NAME,
-  cardName: cardName
-});
+export const updateCardNameActionCreator = createAction(UPDATE_CARD_NAME);
 
-export const updateCvcActionCreator = cvc => ({
-  type: UPDATE_CVC,
-  cvc: cvc
-});
+export const updateCvcActionCreator = createAction(UPDATE_CVC);
 
-export const updateSaveCardActionCreator = () => ({
-    type: SAVE_CARD
-  });
+export const updateSaveCardActionCreator = createAction(SAVE_CARD);
+
+export const clearCardActionCreator = createAction(CLEAR_CARD);
+
 
 export default profileReducer;
