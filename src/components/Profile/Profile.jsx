@@ -2,12 +2,10 @@ import React from "react";
 import style from "./Profile.module.css";
 
 let Profile = props => {
-  
   let onSubmit = e => {
     e.preventDefault();
     props.saveCard();
   };
-
 
   let profileForm = React.createRef();
 
@@ -47,7 +45,7 @@ let Profile = props => {
                   className={style.card__input}
                   onChange={updateCardNumber}
                   value={props.state.cardNumber}
-                  type='number'
+                  type="number"
                   name="number"
                   placeholder="Введите номер карты"
                   required
@@ -61,7 +59,7 @@ let Profile = props => {
                   className={style.card__input}
                   value={props.state.expiryDate}
                   onChange={updateExpiryDate}
-                  type='number'
+                  type="number"
                   name="date"
                   placeholder="00/00"
                   required
@@ -90,7 +88,7 @@ let Profile = props => {
                   className={style.card__input}
                   value={props.state.cvc}
                   onChange={updateCvc}
-                  type='number'
+                  type="number"
                   name="cvc"
                   placeholder="***"
                   required

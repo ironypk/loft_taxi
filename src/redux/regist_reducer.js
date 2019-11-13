@@ -1,9 +1,11 @@
 import {createAction} from 'redux-actions'
-const UPDATE_USER_NAME = "UPDATE-USER-REG-NAME";
-const UPDATE_USER_PASS = "UPDATE-USER-REG-PASS";
-const UPDATE_USER_SURNAME = "UPDATE_USER_REG-SURNAME";
-const UPDATE_USER_EMAIL = "REG-EMAIL";
+const UPDATE_USER_NAME = "UPDATE_USER_NAME";
+const UPDATE_USER_PASS = "UPDATE_USER_PASS";
+const UPDATE_USER_SURNAME = "UPDATE_USER_SURNAME";
+const UPDATE_USER_EMAIL = "UPDATE_USER_EMAIL";
 const REGIST = "REGIST";
+const REGIST_SUCCESS = 'REGIST_SUCCESS';
+const REGIST_ERROR = 'REGIST_ERROR';
 
 let initialState = {
   user: {
@@ -11,7 +13,8 @@ let initialState = {
     name: "",
     surname: "",
     password: ""
-  }
+  },
+  isFetching : false
 };
 
 const registReducer = (state = initialState, action) => {
@@ -53,8 +56,21 @@ const registReducer = (state = initialState, action) => {
 
     case REGIST:
       return {
-        ...state
+        ...state,
+        isFetching : true
+
       };
+    case REGIST_SUCCESS : 
+    return {
+      ...state,
+      isFetching : false
+    }
+
+    case REGIST_ERROR :
+      return {
+        ...state,
+        isFetching : false
+      }
 
     default:
       return state;
@@ -70,5 +86,10 @@ export const updateUserEmailActionCreator = createAction(UPDATE_USER_EMAIL);
 export const updateUserSecondNameActionCreator = createAction(UPDATE_USER_SURNAME);
 
 export const registActionCreator = createAction(REGIST);
+
+export const registSuccesActionCreator = createAction(REGIST_SUCCESS);
+
+export const registErrorActionCreator = createAction(REGIST_ERROR);
+
 
 export default registReducer;

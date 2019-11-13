@@ -6,12 +6,11 @@ import {
   updateUserSecondNameActionCreator,
   registActionCreator
 } from "../../../../redux/regist_reducer";
-import { Route } from "react-router-dom";
 import { connect } from "react-redux";
 
 let mapStateToProps = state => {
   return {
-    state: state.registPage.user
+    state: {...state.registPage }
   };
 };
 

@@ -21,7 +21,7 @@ import { stat } from "fs";
 
 let mapStateToProps = (state) => {
   return {
-    state
+    state : state
   }
 }
 let mapDispatchToProps = (dispatch) => {

@@ -1,11 +1,10 @@
 import React from "react";
 import all from "../Form.module.css";
-import {Link} from "react-router-dom";
-import { useHistory} from "react-router-dom";
+import { Link } from "react-router-dom";
+import Preloader from '../../../common/Preloader'
+import Overlay from '../../../common/Overlay'
 
 let Login = props => {
-
-
   const onSubmit = e => {
     e.preventDefault();
     props.login();
@@ -22,44 +21,51 @@ let Login = props => {
     props.updateUserPass(userPass);
   };
 
-
-
-
   return (
-    <form ref={loginForm} onSubmit={onSubmit} className={all.form}>
-      <div className={all.head}>Войти</div>
-      <div className={all.redirect}>
-        <div className={all.redirect_text}>Новый пользователь?</div>
-        <Link to={`${props.match.url}/regist`} className={all.redirect_link}>
-          Зарегистрируйтесь
-        </Link>
-      </div>
-      <label className={all.label}>
-        <div className={all.label_title}>Email пользователя*</div>
-        <div className={all.input_wrapper}>
-          <input
-            onChange={updateUserName}
-            value={props.state.email}
-            name="email"
-            className={all.input}
-            required
-          ></input>
+    <>
+      <form
+        ref={loginForm}
+        onSubmit={onSubmit}
+        className={`${all.form} ${
+          props.state.isFetching ? all.form__active : null
+        }`}
+      >
+        {props.state.isFetching ? <Preloader/> : null}
+        <div className={all.head}>Войти</div>
+        <div className={all.redirect}>
+          <div className={all.redirect_text}>Новый пользователь?</div>
+          <Link to={`${props.match.url}/regist`} className={all.redirect_link}>
+            Зарегистрируйтесь
+          </Link>
         </div>
-      </label>
-      <label className={all.label}>
-        <div className={all.label_title}>Пароль*</div>
-        <div className={all.input_wrapper}>
-          <input
-            onChange={updateUserPass}
-            name="pass"
-            className={all.input}
-            value={props.state.password}
-            required
-          ></input>
-        </div>
-      </label>
-      <button className={all.btn}>Войти</button>
-    </form>
+        <label className={all.label}>
+          <div className={all.label_title}>Email пользователя*</div>
+          <div className={all.input_wrapper}>
+            <input
+              onChange={updateUserName}
+              value={props.state.email}
+              name="email"
+              className={all.input}
+              required
+            ></input>
+          </div>
+        </label>
+        <label className={all.label}>
+          <div className={all.label_title}>Пароль*</div>
+          <div className={all.input_wrapper}>
+            <input
+              onChange={updateUserPass}
+              name="pass"
+              className={all.input}
+              value={props.state.password}
+              required
+            ></input>
+          </div>
+        </label>
+        <button className={all.btn}>Войти</button>
+      </form>
+      {props.state.isFetching  ? <Overlay/> : null}
+    </>
   );
 };
 

@@ -1,5 +1,6 @@
 import * as Axios from "axios";
-import {registActionCreator}  from './regist_reducer';
+import {registActionCreator, registSuccesActionCreator , registErrorActionCreator}  from './regist_reducer';
+import {loginSuccessActionCreator} from './login_reducer';
 
 
 const registMiddleware = store => next => action => {
@@ -8,14 +9,16 @@ const registMiddleware = store => next => action => {
         let  regist = async (user) => {
           const {data : {token,error}} = await Axios.post('https://loft-taxi.glitch.me/register', user);
           if(error !== undefined){
+            store.dispatch(registErrorActionCreator)
             alert(error)
           } else{
             localStorage.setItem("token", token);
-            alert('успех')
+            store.dispatch(registSuccesActionCreator())
+            store.dispatch(loginSuccessActionCreator())
           }
       }
       regist(user)
-    };
+    }
     next(action);
 }
 

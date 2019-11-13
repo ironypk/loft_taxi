@@ -1,5 +1,9 @@
 import * as Axios from "axios";
-import { loginActionCreator } from "./login_reducer";
+import {
+  loginActionCreator,
+  loginSuccessActionCreator,
+  loginErrorActionCreator
+} from "./login_reducer";
 
 const loginMiddleware = store => next => action => {
   if (action.type === loginActionCreator.toString()) {
@@ -9,10 +13,11 @@ const loginMiddleware = store => next => action => {
         data: { token, error }
       } = await Axios.post("https://loft-taxi.glitch.me/auth", user);
       if (error !== undefined) {
+        store.dispatch(loginErrorActionCreator())
         alert(error);
       } else {
         localStorage.setItem("token", token);
-        alert("успех");
+        store.dispatch(loginSuccessActionCreator());
       }
     };
     login(user);
