@@ -1,10 +1,10 @@
-import {createAction} from 'redux-actions'
+import { createAction } from "redux-actions";
 const UPDATE_USER_EMAIL = "UPDATE-USER-EMAIL";
 const UPDATE_USER_PASS = "UPDATE-USER-PASS";
 const LOGIN = "LOGIN";
 const LOGOUT = "LOGOUT";
-const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
-const LOGIN_ERROR = 'LOGIN_ERROR'
+const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+const LOGIN_ERROR = "LOGIN_ERROR";
 
 let initialState = {
   user: {
@@ -12,7 +12,7 @@ let initialState = {
     password: ""
   },
   isLoggedIn: false,
-  isFetching : false
+  isFetching: false
 };
 
 const loginReducer = (state = initialState, action) => {
@@ -38,19 +38,19 @@ const loginReducer = (state = initialState, action) => {
     case LOGIN:
       return {
         ...state,
-        isFetching : true
+        isFetching: true
       };
-    case LOGIN_SUCCESS : 
-    return {
-      ...state,
-      isLoggedIn : true,
-      isFetching : false
-    }
-    case LOGIN_ERROR :
+    case LOGIN_SUCCESS:
       return {
         ...state,
-        isFetching : true
-      }
+        isLoggedIn: true,
+        isFetching: false
+      };
+    case LOGIN_ERROR:
+      return {
+        ...state,
+        isFetching: true
+      };
     case LOGOUT:
       return {
         ...state,
@@ -66,16 +66,16 @@ const loginReducer = (state = initialState, action) => {
   }
 };
 
-export const updateUserNameActionCreator = createAction(UPDATE_USER_EMAIL)
+export const updateUserName = createAction(UPDATE_USER_EMAIL);
 
-export const updateUserPassActionCreator = createAction(UPDATE_USER_PASS)
+export const updateUserPass = createAction(UPDATE_USER_PASS);
 
-export const loginActionCreator = createAction(LOGIN)
+export const login = createAction(LOGIN);
 
-export const loginSuccessActionCreator = createAction(LOGIN_SUCCESS)
+export const loginSuccess = createAction(LOGIN_SUCCESS);
 
-export const loginErrorActionCreator = createAction(LOGIN_ERROR)
+export const loginError = createAction(LOGIN_ERROR);
 
-export const logoutActionCreator = createAction(LOGOUT)
+export const logout = createAction(LOGOUT);
 
 export default loginReducer;

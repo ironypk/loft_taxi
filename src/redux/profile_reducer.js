@@ -1,11 +1,11 @@
-import {createAction} from 'redux-actions'
+import { createAction } from "redux-actions";
 
 const UPDATE_CARD_NUMBER = "UPDATE_CARD_NUMBER";
 const UPDATE_EXPIRY_DATE = "UPDATE_EXPIRY_DATE";
 const UPDATE_CARD_NAME = "UPDATE_CARD_NAME";
 const UPDATE_CVC = "UPDATE_CVC";
-const SAVE_CARD ='SAVE_CARD';
-const CLEAR_CARD = 'CLEAR_CARD';
+const SAVE_CARD = "SAVE_CARD";
+const CLEAR_CARD = "CLEAR_CARD";
 
 let initialState = {
   cardNumber: "",
@@ -39,36 +39,35 @@ const profileReducer = (state = initialState, action) => {
       };
 
     case SAVE_CARD: {
-        return {
-            ...state
-        }
+      return {
+        ...state
+      };
     }
 
-    case CLEAR_CARD : {
+    case CLEAR_CARD: {
       return {
         ...state,
         cardNumber: "",
         expiryDate: "",
         cardName: "",
         cvc: ""
-      }
+      };
     }
     default:
       return state;
   }
 };
 
-export const updateCardNumberActionCreator = createAction(UPDATE_CARD_NUMBER);
+export const updateCardNumber = createAction(UPDATE_CARD_NUMBER);
 
-export const updateExpiryDateActionCreator = createAction(UPDATE_EXPIRY_DATE);
+export const updateExpiryDate = createAction(UPDATE_EXPIRY_DATE);
 
-export const updateCardNameActionCreator = createAction(UPDATE_CARD_NAME);
+export const updateCardName = createAction(UPDATE_CARD_NAME);
 
-export const updateCvcActionCreator = createAction(UPDATE_CVC);
+export const updateCvc = createAction(UPDATE_CVC);
 
-export const updateSaveCardActionCreator = createAction(SAVE_CARD);
+export const updateSaveCard = createAction(SAVE_CARD);
 
-export const clearCardActionCreator = createAction(CLEAR_CARD);
-
+export const clearCard = createAction(CLEAR_CARD);
 
 export default profileReducer;

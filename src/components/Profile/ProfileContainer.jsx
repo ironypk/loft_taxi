@@ -1,40 +1,25 @@
 import {
-  updateCardNumberActionCreator,
-  updateExpiryDateActionCreator,
-  updateCardNameActionCreator,
-  updateCvcActionCreator,
-  updateSaveCardActionCreator
+  updateCardNumber,
+  updateExpiryDate,
+  updateCardName,
+  updateCvc,
+  updateSaveCard
 } from "../../redux/profile_reducer";
 import Profile from "./Profile";
 import { connect } from "react-redux";
 
-
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     state: state.profilePage
-  }
-}
+  };
+};
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    updateCardNumber : (cardNumber) => {
-      dispatch(updateCardNumberActionCreator(cardNumber))
-    },
-    updateExpiryDate : (expiryDate) => {
-      dispatch(updateExpiryDateActionCreator(expiryDate))
-    },
-    updateCardName : (cardName) => {
-      dispatch(updateCardNameActionCreator(cardName));
-    },
-    updateCvc : (cvc) => {
-      dispatch(updateCvcActionCreator(cvc))
-    },
-    saveCard : () => {
-      dispatch(updateSaveCardActionCreator())
-    }
-  }
-}
-
-let ProfileContainer = connect(mapStateToProps, mapDispatchToProps)(Profile);
+let ProfileContainer = connect(mapStateToProps, {
+  updateCardNumber,
+  updateExpiryDate,
+  updateCardName,
+  updateCvc,
+  updateSaveCard
+})(Profile);
 
 export default ProfileContainer;

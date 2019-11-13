@@ -3,7 +3,7 @@ import all from "../Form.module.css";
 import own from "./Regist.module.css";
 import { Link } from "react-router-dom";
 import Preloader from "../../../common/Preloader";
-import Overlay from '../../../common/Overlay'
+import Overlay from "../../../common/Overlay";
 
 let Regist = props => {
   let onSubmit = e => {
@@ -36,7 +36,7 @@ let Regist = props => {
   return (
     <>
       <form ref={registForm} onSubmit={onSubmit} className={all.form}>
-        {props.state.isFetching ? <Preloader /> : null}
+        {props.isFetching ? <Preloader /> : null}
         <div className={all.head}>Регистрация</div>
         <div className={all.redirect}>
           <div className={all.redirect_text}>Уже зарегистрирован?</div>
@@ -50,7 +50,7 @@ let Regist = props => {
             <input
               onChange={updateUserEmail}
               required
-              value={props.state.user.email}
+              value={props.user.email}
               name="email"
               className={all.input}
             ></input>
@@ -63,7 +63,7 @@ let Regist = props => {
               <input
                 onChange={updateUserName}
                 name="name"
-                value={props.state.user.name}
+                value={props.user.name}
                 required
                 className={all.input}
               ></input>
@@ -74,7 +74,7 @@ let Regist = props => {
             <div className={all.input_wrapper}>
               <input
                 onChange={updateUserSecondName}
-                value={props.state.user.surname}
+                value={props.user.surname}
                 name="surname"
                 className={all.input}
               ></input>
@@ -86,7 +86,7 @@ let Regist = props => {
           <div className={all.input_wrapper}>
             <input
               onChange={updateUserPass}
-              value={props.state.user.password}
+              value={props.user.password}
               name="pass"
               className={all.input}
             ></input>
@@ -94,7 +94,7 @@ let Regist = props => {
         </label>
         <button className={all.btn}>Зарегистрироваться</button>
       </form>
-      {props.state.isFetching ? <Overlay /> : null}
+      {props.isFetching ? <Overlay /> : null}
     </>
   );
 };

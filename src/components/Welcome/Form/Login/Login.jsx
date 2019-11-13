@@ -1,8 +1,8 @@
 import React from "react";
 import all from "../Form.module.css";
 import { Link } from "react-router-dom";
-import Preloader from '../../../common/Preloader'
-import Overlay from '../../../common/Overlay'
+import Preloader from "../../../common/Preloader";
+import Overlay from "../../../common/Overlay";
 
 let Login = props => {
   const onSubmit = e => {
@@ -23,14 +23,8 @@ let Login = props => {
 
   return (
     <>
-      <form
-        ref={loginForm}
-        onSubmit={onSubmit}
-        className={`${all.form} ${
-          props.state.isFetching ? all.form__active : null
-        }`}
-      >
-        {props.state.isFetching ? <Preloader/> : null}
+      <form ref={loginForm} onSubmit={onSubmit} className={all.form}>
+        {props.isFetching ? <Preloader /> : null}
         <div className={all.head}>Войти</div>
         <div className={all.redirect}>
           <div className={all.redirect_text}>Новый пользователь?</div>
@@ -43,7 +37,7 @@ let Login = props => {
           <div className={all.input_wrapper}>
             <input
               onChange={updateUserName}
-              value={props.state.email}
+              value={props.user.email}
               name="email"
               className={all.input}
               required
@@ -57,14 +51,14 @@ let Login = props => {
               onChange={updateUserPass}
               name="pass"
               className={all.input}
-              value={props.state.password}
+              value={props.user.password}
               required
             ></input>
           </div>
         </label>
         <button className={all.btn}>Войти</button>
       </form>
-      {props.state.isFetching  ? <Overlay/> : null}
+      {props.isFetching ? <Overlay /> : null}
     </>
   );
 };

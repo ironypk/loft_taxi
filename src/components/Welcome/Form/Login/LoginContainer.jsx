@@ -1,31 +1,22 @@
 import {
-  loginActionCreator,
-  updateUserNameActionCreator,
-  updateUserPassActionCreator
+  login,
+  updateUserName,
+  updateUserPass
 } from "../../../../redux/login_reducer";
 import Login from "./Login";
 import { connect } from "react-redux";
 
-let mapStateToProps = (state) => {
-    return {
-      state : state.loginPage
-    }
-}
-
-let mapDispatchToProps = (dispatch) => {
+let mapStateToProps = state => {
   return {
-    updateUserName : (userEmail) => {
-      dispatch(updateUserNameActionCreator(userEmail))
-    },
-    updateUserPass : (userPass) => {
-      dispatch(updateUserPassActionCreator(userPass));
-    },
-    login : () => {
-      dispatch(loginActionCreator());
-    }
-  }
-}
+    user: state.loginPage.user,
+    isFetching: state.loginPage.isFetching
+  };
+};
 
-const LoginContainer = connect(mapStateToProps,mapDispatchToProps)(Login);
+const LoginContainer = connect(mapStateToProps, {
+  updateUserName,
+  updateUserPass,
+  login
+})(Login);
 
 export default LoginContainer;

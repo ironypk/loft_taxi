@@ -77,19 +77,19 @@ const registReducer = (state = initialState, action) => {
   }
 };
 
-export const updateUserNameActionCreator = createAction(UPDATE_USER_NAME);
+export const updateUserName = createAction(UPDATE_USER_NAME);
 
-export const updateUserPassActionCreator = createAction(UPDATE_USER_PASS);
+export const updateUserPass = createAction(UPDATE_USER_PASS);
 
-export const updateUserEmailActionCreator = createAction(UPDATE_USER_EMAIL);
+export const updateUserEmail = createAction(UPDATE_USER_EMAIL);
 
-export const updateUserSecondNameActionCreator = createAction(UPDATE_USER_SURNAME);
+export const updateUserSecondName = createAction(UPDATE_USER_SURNAME);
 
-export const registActionCreator = createAction(REGIST);
+export const regist = createAction(REGIST);
 
-export const registSuccesActionCreator = createAction(REGIST_SUCCESS);
+export const registSucces = createAction(REGIST_SUCCESS);
 
-export const registErrorActionCreator = createAction(REGIST_ERROR);
+export const registError = createAction(REGIST_ERROR);
 
 
 export default registReducer;
