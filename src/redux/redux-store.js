@@ -1,10 +1,12 @@
 import { createStore, combineReducers, compose, applyMiddleware } from "redux";
-import loginReducer from "./login_reducer";
-import registReducer from "./regist_reducer";
-import profileReducer from "./profile_reducer";
-import profileMiddleware from "./profile_midlware";
-import registMiddleware from "./regist_midlware";
-import loginMiddleware from "./login_midlware";
+import loginReducer from "./reducers/login_reducer";
+import registReducer from "./reducers/regist_reducer";
+import profileReducer from "./reducers/profile_reducer";
+import createSagaMiddleWare from 'redux-saga'
+import rootSaga from './sagas'
+
+
+const sagaMiddleWare = createSagaMiddleWare()
 
 let reducers = combineReducers({
   loginPage: loginReducer,
@@ -15,11 +17,11 @@ let reducers = combineReducers({
 let store = createStore(
   reducers,
   compose(
-    applyMiddleware(loginMiddleware),
-    applyMiddleware(profileMiddleware),
-    applyMiddleware(registMiddleware)
+    applyMiddleware(sagaMiddleWare)
   )
 );
+
+sagaMiddleWare.run(rootSaga)
 
 window.store = store;
 

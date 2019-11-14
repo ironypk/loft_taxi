@@ -1,5 +1,7 @@
 import React from "react";
 import style from "./Profile.module.css";
+import Preloader from "../common/Preloader";
+import Overlay from "../common/Overlay";
 
 let Profile = props => {
   let onSubmit = e => {
@@ -30,76 +32,80 @@ let Profile = props => {
   };
 
   return (
-    <div className={style.profile}>
-      <form onSubmit={onSubmit} ref={profileForm} className={style.payment}>
-        <div className={style.payment__header}>
-          <h3 className={style.payment__head}>Профиль</h3>
-          <div>Способ оплаты</div>
-        </div>
-        <div className={style.payment__card_wrapper}>
-          <div className={`${style.card} ${style.card_front}`}>
-            <label className={style.card__row}>
-              <div className={style.card__row_title}>Номер карты</div>
-              <div className={style.card__input_wrapper}>
-                <input
-                  className={style.card__input}
-                  onChange={updateCardNumber}
-                  value={props.state.cardNumber}
-                  type="number"
-                  name="number"
-                  placeholder="Введите номер карты"
-                  required
-                />
-              </div>
-            </label>
-            <label className={style.card__row}>
-              <div className={style.card__row_title}>Срок действия</div>
-              <div className={style.card__input_wrapper}>
-                <input
-                  className={style.card__input}
-                  value={props.state.expiryDate}
-                  onChange={updateExpiryDate}
-                  type="number"
-                  name="date"
-                  placeholder="00/00"
-                  required
-                />
-              </div>
-            </label>
+    <>
+      <div className={style.profile}>
+        <form onSubmit={onSubmit} ref={profileForm} className={style.payment}>
+          {props.isFetching ? <Preloader /> : null}
+          <div className={style.payment__header}>
+            <h3 className={style.payment__head}>Профиль</h3>
+            <div>Способ оплаты</div>
           </div>
-          <div className={`${style.card} ${style.card_back}`}>
-            <label className={style.card__row}>
-              <div className={style.card__row_title}>Имя владельца</div>
-              <div className={style.card__input_wrapper}>
-                <input
-                  className={style.card__input}
-                  value={props.state.cardName}
-                  onChange={updateCardName}
-                  name="name"
-                  placeholder="Введите имя владельца"
-                  required
-                />
-              </div>
-            </label>
-            <label className={style.card__row}>
-              <div className={style.card__row_title}>CVC</div>
-              <div className={style.card__input_wrapper}>
-                <input
-                  className={style.card__input}
-                  value={props.state.cvc}
-                  onChange={updateCvc}
-                  type="number"
-                  name="cvc"
-                  placeholder="***"
-                  required
-                />
-              </div>
-            </label>
+          <div className={style.payment__card_wrapper}>
+            <div className={`${style.card} ${style.card_front}`}>
+              <label className={style.card__row}>
+                <div className={style.card__row_title}>Номер карты</div>
+                <div className={style.card__input_wrapper}>
+                  <input
+                    className={style.card__input}
+                    onChange={updateCardNumber}
+                    value={props.card.cardNumber}
+                    type="number"
+                    name="number"
+                    placeholder="Введите номер карты"
+                    required
+                  />
+                </div>
+              </label>
+              <label className={style.card__row}>
+                <div className={style.card__row_title}>Срок действия</div>
+                <div className={style.card__input_wrapper}>
+                  <input
+                    className={style.card__input}
+                    value={props.card.expiryDate}
+                    onChange={updateExpiryDate}
+                    type="number"
+                    name="date"
+                    placeholder="00/00"
+                    required
+                  />
+                </div>
+              </label>
+            </div>
+            <div className={`${style.card} ${style.card_back}`}>
+              <label className={style.card__row}>
+                <div className={style.card__row_title}>Имя владельца</div>
+                <div className={style.card__input_wrapper}>
+                  <input
+                    className={style.card__input}
+                    value={props.card.cardName}
+                    onChange={updateCardName}
+                    name="name"
+                    placeholder="Введите имя владельца"
+                    required
+                  />
+                </div>
+              </label>
+              <label className={style.card__row}>
+                <div className={style.card__row_title}>CVC</div>
+                <div className={style.card__input_wrapper}>
+                  <input
+                    className={style.card__input}
+                    value={props.card.cvc}
+                    onChange={updateCvc}
+                    type="number"
+                    name="cvc"
+                    placeholder="***"
+                    required
+                  />
+                </div>
+              </label>
+            </div>
           </div>
-        </div>
-        <button className={style.btn}>Сохранить</button>
-      </form>
-    </div>
+          <button className={style.btn}>Сохранить</button>
+        </form>
+      </div>
+      {props.isFetching ? <Overlay /> : null}
+    </>
   );
 };
 

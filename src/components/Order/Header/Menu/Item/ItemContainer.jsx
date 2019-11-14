@@ -1,4 +1,4 @@
-import { logout } from "../../../../../redux/login_reducer";
+import { logout } from "../../../../../redux/reducers/login_reducer";
 import Item from "./Item";
 
 import { connect } from "react-redux";

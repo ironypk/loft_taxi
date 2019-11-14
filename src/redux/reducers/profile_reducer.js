@@ -5,14 +5,18 @@ const UPDATE_EXPIRY_DATE = "UPDATE_EXPIRY_DATE";
 const UPDATE_CARD_NAME = "UPDATE_CARD_NAME";
 const UPDATE_CVC = "UPDATE_CVC";
 const SAVE_CARD = "SAVE_CARD";
-const CLEAR_CARD = "CLEAR_CARD";
+const SAVE_CARD_SUCCESS = "SAVE_CARD_SUCCESS";
+const SAVE_CARD_ERROR = "SAVE_CARD_ERROR";
 
 let initialState = {
-  cardNumber: "",
-  expiryDate: "",
-  cardName: "",
-  cvc: "",
-  token: localStorage.token
+  card: {
+    cardNumber: "",
+    expiryDate: "",
+    cardName: "",
+    cvc: ""
+  },
+  isFetching: false,
+  token: localStorage.token || null
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -20,37 +24,49 @@ const profileReducer = (state = initialState, action) => {
     case UPDATE_CARD_NUMBER:
       return {
         ...state,
-        cardNumber: action.payload
+        card: { ...state.card, cardNumber: action.payload }
       };
     case UPDATE_EXPIRY_DATE:
       return {
         ...state,
-        expiryDate: action.payload
+        card: { ...state.card, expiryDate: action.payload }
       };
     case UPDATE_CARD_NAME:
       return {
         ...state,
-        cardName: action.payload
+        card: { ...state.card, cardName: action.payload }
       };
     case UPDATE_CVC:
       return {
         ...state,
-        cvc: action.payload
+        card: { ...state.card, cvc: action.payload }
       };
 
     case SAVE_CARD: {
       return {
-        ...state
+        ...state,
+        isFetching: true
       };
     }
 
-    case CLEAR_CARD: {
+    case SAVE_CARD_ERROR: {
       return {
         ...state,
-        cardNumber: "",
-        expiryDate: "",
-        cardName: "",
-        cvc: ""
+        isFetching: false
+      };
+    }
+
+    case SAVE_CARD_SUCCESS: {
+      return {
+        ...state,
+        card: {
+          ...state.card,
+          cardNumber: "",
+          expiryDate: "",
+          cardName: "",
+          cvc: ""
+        },
+        isFetching: false
       };
     }
     default:
@@ -66,8 +82,10 @@ export const updateCardName = createAction(UPDATE_CARD_NAME);
 
 export const updateCvc = createAction(UPDATE_CVC);
 
-export const updateSaveCard = createAction(SAVE_CARD);
+export const saveCard = createAction(SAVE_CARD);
 
-export const clearCard = createAction(CLEAR_CARD);
+export const saveCardSuccess = createAction(SAVE_CARD_SUCCESS);
+
+export const saveCardError = createAction(SAVE_CARD_ERROR);
 
 export default profileReducer;

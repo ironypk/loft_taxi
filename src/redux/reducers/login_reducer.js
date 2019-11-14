@@ -49,7 +49,7 @@ const loginReducer = (state = initialState, action) => {
     case LOGIN_ERROR:
       return {
         ...state,
-        isFetching: true
+        isFetching: false
       };
     case LOGOUT:
       return {

@@ -5,7 +5,7 @@ import {
   updateUserEmail,
   updateUserSecondName,
   regist
-} from "../../../../redux/regist_reducer";
+} from "../../../../redux/reducers/regist_reducer";
 import { connect } from "react-redux";
 
 let mapStateToProps = state => {

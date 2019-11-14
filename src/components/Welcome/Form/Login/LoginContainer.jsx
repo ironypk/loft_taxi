@@ -2,7 +2,7 @@ import {
   login,
   updateUserName,
   updateUserPass
-} from "../../../../redux/login_reducer";
+} from "../../../../redux/reducers/login_reducer";
 import Login from "./Login";
 import { connect } from "react-redux";
 

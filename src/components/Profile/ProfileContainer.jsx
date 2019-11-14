@@ -3,14 +3,15 @@ import {
   updateExpiryDate,
   updateCardName,
   updateCvc,
-  updateSaveCard
-} from "../../redux/profile_reducer";
+  saveCard
+} from "../../redux/reducers/profile_reducer";
 import Profile from "./Profile";
 import { connect } from "react-redux";
 
 const mapStateToProps = state => {
   return {
-    state: state.profilePage
+    card: state.profilePage.card,
+    isFetching : state.profilePage.isFetching
   };
 };
 
@@ -19,7 +20,7 @@ let ProfileContainer = connect(mapStateToProps, {
   updateExpiryDate,
   updateCardName,
   updateCvc,
-  updateSaveCard
+  saveCard
 })(Profile);
 
 export default ProfileContainer;
