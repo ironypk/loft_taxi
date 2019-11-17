@@ -2,108 +2,89 @@ import React from "react";
 import style from "./Profile.module.css";
 import Preloader from "../common/Preloader";
 import Overlay from "../common/Overlay";
+import { reduxForm, Field } from "redux-form";
+
+let ProfileForm = props => {
+  return (
+    <form onSubmit={props.handleSubmit} className={style.payment}>
+      {props.isFetching ? <Preloader /> : null}
+      <div className={style.payment__header}>
+        <h3 className={style.payment__head}>Профиль</h3>
+        <div>Способ оплаты</div>
+      </div>
+      <div className={style.payment__card_wrapper}>
+        <div className={`${style.card} ${style.card_front}`}>
+          <label className={style.card__row}>
+            <div className={style.card__row_title}>Номер карты</div>
+            <div className={style.card__input_wrapper}>
+              <Field
+                component="input"
+                className={style.card__input}
+                type="number"
+                name="number"
+                placeholder="Введите номер карты"
+                required
+              />
+            </div>
+          </label>
+          <label className={style.card__row}>
+            <div className={style.card__row_title}>Срок действия</div>
+            <div className={style.card__input_wrapper}>
+              <Field
+                component="input"
+                className={style.card__input}
+                type="number"
+                name="date"
+                placeholder="00/00"
+                required
+              />
+            </div>
+          </label>
+        </div>
+        <div className={`${style.card} ${style.card_back}`}>
+          <label className={style.card__row}>
+            <div className={style.card__row_title}>Имя владельца</div>
+            <div className={style.card__input_wrapper}>
+              <Field
+                component="input"
+                className={style.card__input}
+                name="name"
+                placeholder="Введите имя владельца"
+                required
+              />
+            </div>
+          </label>
+          <label className={style.card__row}>
+            <div className={style.card__row_title}>CVC</div>
+            <div className={style.card__input_wrapper}>
+              <Field
+                component="input"
+                className={style.card__input}
+                type="number"
+                name="cvc"
+                placeholder="***"
+                required
+              />
+            </div>
+          </label>
+        </div>
+      </div>
+      <button className={style.btn}>Сохранить</button>
+    </form>
+  );
+};
+
+let ReduxProfileForm = reduxForm({
+  form: "profile"
+})(ProfileForm);
 
 let Profile = props => {
-  let onSubmit = e => {
-    e.preventDefault();
-    props.saveCard();
+  const onSubmit = payload => {
+    props.saveCard(payload);
   };
-
-  let profileForm = React.createRef();
-
-  let updateCardNumber = () => {
-    let cardNumber = profileForm.current.elements.number.value;
-    props.updateCardNumber(cardNumber);
-  };
-
-  let updateExpiryDate = () => {
-    let expiryDate = profileForm.current.elements.date.value;
-    props.updateExpiryDate(expiryDate);
-  };
-
-  let updateCardName = () => {
-    let cardName = profileForm.current.elements.name.value;
-    props.updateCardName(cardName);
-  };
-
-  let updateCvc = () => {
-    let cvc = profileForm.current.elements.cvc.value;
-    props.updateCvc(cvc);
-  };
-
   return (
     <>
-      <div className={style.profile}>
-        <form onSubmit={onSubmit} ref={profileForm} className={style.payment}>
-          {props.isFetching ? <Preloader /> : null}
-          <div className={style.payment__header}>
-            <h3 className={style.payment__head}>Профиль</h3>
-            <div>Способ оплаты</div>
-          </div>
-          <div className={style.payment__card_wrapper}>
-            <div className={`${style.card} ${style.card_front}`}>
-              <label className={style.card__row}>
-                <div className={style.card__row_title}>Номер карты</div>
-                <div className={style.card__input_wrapper}>
-                  <input
-                    className={style.card__input}
-                    onChange={updateCardNumber}
-                    value={props.card.cardNumber}
-                    type="number"
-                    name="number"
-                    placeholder="Введите номер карты"
-                    required
-                  />
-                </div>
-              </label>
-              <label className={style.card__row}>
-                <div className={style.card__row_title}>Срок действия</div>
-                <div className={style.card__input_wrapper}>
-                  <input
-                    className={style.card__input}
-                    value={props.card.expiryDate}
-                    onChange={updateExpiryDate}
-                    type="number"
-                    name="date"
-                    placeholder="00/00"
-                    required
-                  />
-                </div>
-              </label>
-            </div>
-            <div className={`${style.card} ${style.card_back}`}>
-              <label className={style.card__row}>
-                <div className={style.card__row_title}>Имя владельца</div>
-                <div className={style.card__input_wrapper}>
-                  <input
-                    className={style.card__input}
-                    value={props.card.cardName}
-                    onChange={updateCardName}
-                    name="name"
-                    placeholder="Введите имя владельца"
-                    required
-                  />
-                </div>
-              </label>
-              <label className={style.card__row}>
-                <div className={style.card__row_title}>CVC</div>
-                <div className={style.card__input_wrapper}>
-                  <input
-                    className={style.card__input}
-                    value={props.card.cvc}
-                    onChange={updateCvc}
-                    type="number"
-                    name="cvc"
-                    placeholder="***"
-                    required
-                  />
-                </div>
-              </label>
-            </div>
-          </div>
-          <button className={style.btn}>Сохранить</button>
-        </form>
-      </div>
+      <ReduxProfileForm {...props} onSubmit={onSubmit} />
       {props.isFetching ? <Overlay /> : null}
     </>
   );

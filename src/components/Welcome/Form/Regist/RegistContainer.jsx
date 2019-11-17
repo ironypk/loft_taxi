@@ -1,11 +1,5 @@
 import Regist from "./Regist";
-import {
-  updateUserName,
-  updateUserPass,
-  updateUserEmail,
-  updateUserSecondName,
-  regist
-} from "../../../../redux/reducers/regist_reducer";
+import { regist } from "../../../../redux/reducers/regist_reducer";
 import { connect } from "react-redux";
 
 let mapStateToProps = state => {
@@ -16,10 +10,6 @@ let mapStateToProps = state => {
 };
 
 const RegistContainer = connect(mapStateToProps, {
-  updateUserName,
-  updateUserPass,
-  updateUserEmail,
-  updateUserSecondName,
   regist
 })(Regist);
 

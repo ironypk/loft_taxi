@@ -4,96 +4,71 @@ import own from "./Regist.module.css";
 import { Link } from "react-router-dom";
 import Preloader from "../../../common/Preloader";
 import Overlay from "../../../common/Overlay";
+import { reduxForm, Field } from "redux-form";
+
+let RegistForm = props => {
+  return (
+    <form onSubmit={props.handleSubmit} className={all.form}>
+      {props.isFetching ? <Preloader /> : null}
+      <div className={all.head}>Регистрация</div>
+      <div className={all.redirect}>
+        <div className={all.redirect_text}>Уже зарегистрирован?</div>
+        <Link to={`/welcome`} className={all.redirect_link}>
+          Войти
+        </Link>
+      </div>
+      <label className={all.label}>
+        <div className={all.label_title}>Адрес электронной почты</div>
+        <div className={all.input_wrapper}>
+          <Field
+            component="input"
+            required
+            name="email"
+            className={all.input}
+          />
+        </div>
+      </label>
+      <div className={own.user_data}>
+        <label className={`${all.label} ${own.name}`}>
+          <div className={all.label_title}>Имя</div>
+          <div className={all.input_wrapper}>
+            <Field
+              component="input"
+              name="name"
+              required
+              className={all.input}
+            />
+          </div>
+        </label>
+        <label className={all.label}>
+          <div className={all.label_title}>Фамилия</div>
+          <div className={all.input_wrapper}>
+            <Field component="input" name="surname" className={all.input} />
+          </div>
+        </label>
+      </div>
+      <label className={all.label}>
+        <div className={all.label_title}>Пароль</div>
+        <div className={all.input_wrapper}>
+          <Field component="input" name="password" className={all.input} />
+        </div>
+      </label>
+      <button className={all.btn}>Зарегистрироваться</button>
+    </form>
+  );
+};
+
+let ReduxRegistForm = reduxForm({
+  form: "regist"
+})(RegistForm);
 
 let Regist = props => {
-  let onSubmit = e => {
-    e.preventDefault();
-    props.regist();
+  const onSubmit = payload => {
+    props.regist(payload);
   };
-
-  let registForm = React.createRef();
-
-  let updateUserName = () => {
-    let userName = registForm.current.elements.name.value;
-    props.updateUserName(userName);
-  };
-
-  let updateUserPass = () => {
-    let userPass = registForm.current.elements.pass.value;
-    props.updateUserPass(userPass);
-  };
-
-  let updateUserEmail = () => {
-    let userEmail = registForm.current.elements.email.value;
-    props.updateUserEmail(userEmail);
-  };
-
-  let updateUserSecondName = () => {
-    let userSurname = registForm.current.elements.surname.value;
-    props.updateUserSecondName(userSurname);
-  };
-
   return (
     <>
-      <form ref={registForm} onSubmit={onSubmit} className={all.form}>
-        {props.isFetching ? <Preloader /> : null}
-        <div className={all.head}>Регистрация</div>
-        <div className={all.redirect}>
-          <div className={all.redirect_text}>Уже зарегистрирован?</div>
-          <Link to={`/welcome`} className={all.redirect_link}>
-            Войти
-          </Link>
-        </div>
-        <label className={all.label}>
-          <div className={all.label_title}>Адрес электронной почты</div>
-          <div className={all.input_wrapper}>
-            <input
-              onChange={updateUserEmail}
-              required
-              value={props.user.email}
-              name="email"
-              className={all.input}
-            ></input>
-          </div>
-        </label>
-        <div className={own.user_data}>
-          <label className={`${all.label} ${own.name}`}>
-            <div className={all.label_title}>Имя</div>
-            <div className={all.input_wrapper}>
-              <input
-                onChange={updateUserName}
-                name="name"
-                value={props.user.name}
-                required
-                className={all.input}
-              ></input>
-            </div>
-          </label>
-          <label className={all.label}>
-            <div className={all.label_title}>Фамилия</div>
-            <div className={all.input_wrapper}>
-              <input
-                onChange={updateUserSecondName}
-                value={props.user.surname}
-                name="surname"
-                className={all.input}
-              ></input>
-            </div>
-          </label>
-        </div>
-        <label className={all.label}>
-          <div className={all.label_title}>Пароль</div>
-          <div className={all.input_wrapper}>
-            <input
-              onChange={updateUserPass}
-              value={props.user.password}
-              name="pass"
-              className={all.input}
-            ></input>
-          </div>
-        </label>
-        <button className={all.btn}>Зарегистрироваться</button>
-      </form>
+      <ReduxRegistForm {...props} onSubmit={onSubmit} />
       {props.isFetching ? <Overlay /> : null}
     </>
   );

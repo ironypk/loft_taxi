@@ -4,6 +4,7 @@ import registReducer from "./reducers/regist_reducer";
 import profileReducer from "./reducers/profile_reducer";
 import createSagaMiddleWare from 'redux-saga'
 import rootSaga from './sagas'
+import {reducer as formReducer} from 'redux-form'
 
 
 const sagaMiddleWare = createSagaMiddleWare()
@@ -11,7 +12,8 @@ const sagaMiddleWare = createSagaMiddleWare()
 let reducers = combineReducers({
   loginPage: loginReducer,
   registPage: registReducer,
-  profilePage: profileReducer
+  profilePage: profileReducer,
+  form : formReducer
 });
 
 let store = createStore(
@@ -20,6 +22,7 @@ let store = createStore(
     applyMiddleware(sagaMiddleWare)
   )
 );
+
 
 sagaMiddleWare.run(rootSaga)
 

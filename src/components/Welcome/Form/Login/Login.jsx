@@ -3,27 +3,11 @@ import all from "../Form.module.css";
 import { Link } from "react-router-dom";
 import Preloader from "../../../common/Preloader";
 import Overlay from "../../../common/Overlay";
+import { reduxForm, Field } from "redux-form";
 
-let Login = props => {
-  const onSubmit = e => {
-    e.preventDefault();
-    props.login();
-  };
-  let loginForm = React.createRef();
-
-  let updateUserName = () => {
-    let userEmail = loginForm.current.elements.email.value;
-    props.updateUserName(userEmail);
-  };
-
-  let updateUserPass = () => {
-    let userPass = loginForm.current.elements.pass.value;
-    props.updateUserPass(userPass);
-  };
-
+let LoginForm = props => {
   return (
-    <>
-      <form ref={loginForm} onSubmit={onSubmit} className={all.form}>
+      <form onSubmit={props.handleSubmit} className={all.form}>
         {props.isFetching ? <Preloader /> : null}
         <div className={all.head}>Войти</div>
         <div className={all.redirect}>
@@ -35,29 +19,41 @@ let Login = props => {
         <label className={all.label}>
           <div className={all.label_title}>Email пользователя*</div>
           <div className={all.input_wrapper}>
-            <input
-              onChange={updateUserName}
-              value={props.user.email}
+            <Field
+              component="input"
               name="email"
               className={all.input}
               required
-            ></input>
+            />
           </div>
         </label>
         <label className={all.label}>
           <div className={all.label_title}>Пароль*</div>
           <div className={all.input_wrapper}>
-            <input
-              onChange={updateUserPass}
-              name="pass"
+            <Field
+              component="input"
+              name="password"
               className={all.input}
-              value={props.user.password}
               required
-            ></input>
+            ></Field>
           </div>
         </label>
         <button className={all.btn}>Войти</button>
       </form>
+  );
+};
+
+const ReduxLoginForm = reduxForm({
+  form: "login"
+})(LoginForm);
+
+const Login = props => {
+  const onSubmit = (payload) => {
+    props.login(payload);
+  };
+  return (
+    <>
+      <ReduxLoginForm {...props} onSubmit={onSubmit} />
       {props.isFetching ? <Overlay /> : null}
     </>
   );
