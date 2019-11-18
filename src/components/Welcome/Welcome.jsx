@@ -13,7 +13,6 @@ let Welcome = ({ match }) => {
       </div>
       <Switch>
         <Route path={`${match.path}/`} component={LoginContainer} exact/>
-        {/* <Route path={`${match.path}/login`} component={LoginContainer} /> */}
         <Route path={`${match.path}/regist`} component={RegistContainer} />
       </Switch>
     </div>
