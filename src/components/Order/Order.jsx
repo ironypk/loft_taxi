@@ -3,21 +3,39 @@ import all from "./Order.module.css";
 import ProfileContainer from "../Profile/ProfileContainer";
 import Maps from "../Map/Map";
 import Header from "./Header/Header";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, withRouter } from "react-router-dom";
+import RequestCard from "../RequestCard/RequestCard";
+import { connect } from "react-redux";
+import {compose} from 'redux'
+import TakeTaxi from "../TakeTaxi/TakeTaxi";
 
-let Order = ({ match }) => {
+
+
+let Order = (props) => {
   return (
     <div className={all.order}>
       <Header />
       <div className="order__content">
+        {!props.profilePage.isCard && props.location.pathname === '/order/map' ? <RequestCard/> : null}
+        {props.profilePage.isCard && props.location.pathname ==='/order/map' ? <TakeTaxi/> : null}
         <Switch>
-          <Route path={`${match.path}/map`} component={Maps} />
-          <Route path={`${match.path}/profile`} component={ProfileContainer} />
-          <Route component={Maps} />
+          <Route path={`${props.match.path}/`} exact component={Maps} />
+          <Route path={`${props.match.path}/profile`} component={ProfileContainer} />
+          <Route component={Maps}/>
         </Switch>
       </div>
     </div>
   );
 };
 
-export default Order;
+
+let mapStateToProps = (state) => {
+  return {
+    profilePage : state.profilePage
+  }
+}
+
+export default compose(
+  withRouter,
+  connect(mapStateToProps, null)
+)(Order);

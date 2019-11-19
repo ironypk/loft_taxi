@@ -10,6 +10,7 @@ let initialState = {
     cardName: "",
     cvc: ""
   },
+  isCard : true,
   isFetching: false,
   token: localStorage.token || null
 };

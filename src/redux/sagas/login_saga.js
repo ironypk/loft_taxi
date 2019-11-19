@@ -7,7 +7,6 @@ let postRequest = user => {
     response => response.data
   );
 };
-
 export function* loginSaga() {
   yield takeEvery(login, function*() {
     let {
@@ -21,5 +20,5 @@ export function* loginSaga() {
       localStorage.setItem("token", token);
       yield put(loginSuccess());
     }
-  });
+   });
 }

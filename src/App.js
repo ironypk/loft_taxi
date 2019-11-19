@@ -14,7 +14,7 @@ let App = props => {
         <Route path="/welcome" component={Welcome} />
         <Route path="/order" component={Order} />
       </Switch>
-      {props.isLoggedIn ? <Redirect to="/order" /> : <Redirect to="/welcome" />}
+      {props.isLoggedIn ? <Redirect to="/order/map" /> : <Redirect to="/welcome" />}
     </div>
   );
 };

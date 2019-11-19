@@ -1,0 +1,11 @@
+.requestCard {
+    position: absolute;
+    left:50px;
+    top:100px;
+    max-width:500px;
+    padding: 40px;
+    margin: 40px;
+    z-index: 1000;
+    background-color:#fff;
+    border-radius: 10px;
+}
