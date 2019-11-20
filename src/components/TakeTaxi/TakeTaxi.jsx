@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import style from "./TakeTaxi.module.css";
-import { withRouter } from "react-router-dom";
-import { reduxForm, Field, change } from "redux-form";
+import { Field, change } from "redux-form";
 import styleButton from "../Profile/Profile.module.css";
-import { compose } from "redux";
-import { connect } from "react-redux";
+
 
 let PathList = props => {
   return (
@@ -13,8 +11,8 @@ let PathList = props => {
         <li
           onClick={() => {
             props.takePlaceFrom
-              ? props.takePlaceFrom(path.place)
-              : props.takePlaceTo(path.place);
+              ? props.takePlaceFrom(path)
+              : props.takePlaceTo(path);
           }}
           key={path.id}
           className={style.path_item}
@@ -27,14 +25,17 @@ let PathList = props => {
 };
 
 let TakeTaxiForm = props => {
+  if(props.path.length === 0){
+    props.fetchAdressList()
+  }
   let [to, setTo] = useState(false);
   let [from, setFrom] = useState(false);
-  let takePlaceFrom = place => {
-    props.dispatch(change("taxi", "from", place));
+  let takePlaceFrom = path => {
+    props.dispatch(change("taxi", "from", path.place));
     setFrom(false);
   };
-  let takePlaceTo = place => {
-    props.dispatch(change("taxi", "to", place));
+  let takePlaceTo = path => {
+    props.dispatch(change("taxi", "to", path.place));
     setTo(false);
   };
 
@@ -80,25 +81,6 @@ let TakeTaxiForm = props => {
   );
 };
 
-const ReduxTakeTaxiForm = reduxForm({
-  form: "taxi"
-})(TakeTaxiForm);
 
-const TakeTaxi = props => {
-  const onSubmit = payload => {
-    console.log(payload);
-  };
-  return (
-    <>
-      <ReduxTakeTaxiForm {...props} onSubmit={onSubmit} />
-    </>
-  );
-};
 
-let mapStatetoProps = state => {
-  return {
-    path: state.taxi.path
-  };
-};
-
-export default compose(withRouter, connect(mapStatetoProps, null))(TakeTaxi);
+export default TakeTaxiForm;

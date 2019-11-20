@@ -18,7 +18,6 @@ export function* profileSaga() {
       alert(error);
       yield put(saveCardError())
     } else {
-        alert("Карта Сохранена");
         yield put(saveCardSuccess());
     }
   });

@@ -2,6 +2,7 @@ import { createAction } from "redux-actions";
 const SAVE_CARD = "SAVE_CARD";
 const SAVE_CARD_SUCCESS = "SAVE_CARD_SUCCESS";
 const SAVE_CARD_ERROR = "SAVE_CARD_ERROR";
+const TOGGLE_FORM = 'TOGGLE_FORM';
 
 let initialState = {
   card: {
@@ -10,7 +11,8 @@ let initialState = {
     cardName: "",
     cvc: ""
   },
-  isCard : true,
+  isCard : false,
+  toggleForm : false,
   isFetching: false,
   token: localStorage.token || null
 };
@@ -32,9 +34,18 @@ const profileReducer = (state = initialState, action) => {
       };
     }
 
+    case TOGGLE_FORM : {
+      return {
+        ...state,
+        toogleForm : action.payload
+      }
+    }
+
     case SAVE_CARD_SUCCESS: {
       return {
         ...state,
+        isCard: true,
+        toggleForm : true,
         isFetching: false
       };
     }
@@ -44,6 +55,8 @@ const profileReducer = (state = initialState, action) => {
 };
 
 export const saveCard = createAction(SAVE_CARD);
+
+export const toggleForm = createAction(TOGGLE_FORM)
 
 export const saveCardSuccess = createAction(SAVE_CARD_SUCCESS);
 

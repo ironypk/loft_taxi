@@ -7,7 +7,7 @@ import { Route, Switch, withRouter } from "react-router-dom";
 import RequestCard from "../RequestCard/RequestCard";
 import { connect } from "react-redux";
 import {compose} from 'redux'
-import TakeTaxi from "../TakeTaxi/TakeTaxi";
+import TakeTaxiContainer from "../TakeTaxi/TakeTaxiContainer";
 
 
 
@@ -17,7 +17,7 @@ let Order = (props) => {
       <Header />
       <div className="order__content">
         {!props.profilePage.isCard && props.location.pathname === '/order/map' ? <RequestCard/> : null}
-        {props.profilePage.isCard && props.location.pathname ==='/order/map' ? <TakeTaxi/> : null}
+        {props.profilePage.isCard && props.location.pathname ==='/order/map' ? <TakeTaxiContainer/> : null}
         <Switch>
           <Route path={`${props.match.path}/`} exact component={Maps} />
           <Route path={`${props.match.path}/profile`} component={ProfileContainer} />

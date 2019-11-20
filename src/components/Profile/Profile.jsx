@@ -1,8 +1,27 @@
 import React from "react";
 import style from "./Profile.module.css";
 import Preloader from "../common/Preloader";
-import Overlay from "../common/Overlay";
-import { reduxForm, Field } from "redux-form";
+import { Field } from "redux-form";
+
+
+let CardSuccessForm = props => {
+  return (
+    <div>
+      <div>Платежные данные обновлены</div>
+
+        <button
+          onClick={() => {
+            props.toggleForm(false);
+            props.history.push('/order/map')
+          }}
+          className={style.btn}
+        >
+          перейти на карту
+        </button>
+
+    </div>
+  );
+};
 
 let ProfileForm = props => {
   return (
@@ -73,19 +92,11 @@ let ProfileForm = props => {
     </form>
   );
 };
-
-let ReduxProfileForm = reduxForm({
-  form: "profile"
-})(ProfileForm);
-
 let Profile = props => {
-  const onSubmit = payload => {
-    props.saveCard(payload);
-  };
   return (
     <>
-      <ReduxProfileForm {...props} onSubmit={onSubmit} />
-      {props.isFetching ? <Overlay /> : null}
+      {props.toggleF === false && <ProfileForm {...props} />}
+      {props.toggleF === true && <CardSuccessForm {...props} />}
     </>
   );
 };
