@@ -1,5 +1,6 @@
 import { takeEvery, call, put, select } from "redux-saga/effects";
 import { login, loginSuccess, loginError } from "../reducers/login_reducer";
+import {setToken} from '../reducers/profile_reducer'
 import * as Axios from "axios";
 
 let postRequest = user => {
@@ -17,7 +18,8 @@ export function* loginSaga() {
       alert(error);
       yield put(loginError());
     } else {
-      localStorage.setItem("token", token);
+      yield put(setToken(token))
+      localStorage.setItem("isLoggedIn", true);
       yield put(loginSuccess());
     }
    });

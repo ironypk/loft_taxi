@@ -24,6 +24,9 @@ let CardSuccessForm = props => {
 };
 
 let ProfileForm = props => {
+  // if(props.card){
+  //   props.initialize(props.card)
+  // }
   return (
     <form onSubmit={props.handleSubmit} className={style.payment}>
       {props.isFetching ? <Preloader /> : null}

@@ -2,7 +2,9 @@ import { createAction } from "redux-actions";
 const SAVE_CARD = "SAVE_CARD";
 const SAVE_CARD_SUCCESS = "SAVE_CARD_SUCCESS";
 const SAVE_CARD_ERROR = "SAVE_CARD_ERROR";
-const TOGGLE_FORM = 'TOGGLE_FORM';
+const TOGGLE_FORM = "TOGGLE_FORM";
+const SET_TOKEN = "SET_TOKEN";
+const CHECK_STORAGE_CARD = "CHECK_STORAGE_CARD";
 
 let initialState = {
   card: {
@@ -11,10 +13,10 @@ let initialState = {
     cardName: "",
     cvc: ""
   },
-  isCard : false,
-  toggleForm : false,
+  isCard: false,
+  toggleForm: false,
   isFetching: false,
-  token: localStorage.token || null
+  token: ""
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -22,7 +24,7 @@ const profileReducer = (state = initialState, action) => {
     case SAVE_CARD: {
       return {
         ...state,
-        card : {...action.payload},
+        card: { ...action.payload },
         isFetching: true
       };
     }
@@ -34,18 +36,33 @@ const profileReducer = (state = initialState, action) => {
       };
     }
 
-    case TOGGLE_FORM : {
+    case CHECK_STORAGE_CARD: {
       return {
         ...state,
-        toogleForm : action.payload
-      }
+        card : JSON.parse(localStorage.getItem('card')),
+        isCard: true
+      };
+    }
+
+    case SET_TOKEN: {
+      return {
+        ...state,
+        token: action.payload
+      };
+    }
+
+    case TOGGLE_FORM: {
+      return {
+        ...state,
+        toggleForm: action.payload
+      };
     }
 
     case SAVE_CARD_SUCCESS: {
       return {
         ...state,
         isCard: true,
-        toggleForm : true,
+        toggleForm: true,
         isFetching: false
       };
     }
@@ -54,9 +71,11 @@ const profileReducer = (state = initialState, action) => {
   }
 };
 
+export const checkStorageCard = createAction(CHECK_STORAGE_CARD);
+export const setToken = createAction(SET_TOKEN);
 export const saveCard = createAction(SAVE_CARD);
 
-export const toggleForm = createAction(TOGGLE_FORM)
+export const toggleForm = createAction(TOGGLE_FORM);
 
 export const saveCardSuccess = createAction(SAVE_CARD_SUCCESS);
 

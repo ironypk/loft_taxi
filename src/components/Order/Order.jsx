@@ -8,10 +8,14 @@ import RequestCard from "../RequestCard/RequestCard";
 import { connect } from "react-redux";
 import {compose} from 'redux'
 import TakeTaxiContainer from "../TakeTaxi/TakeTaxiContainer";
+import { checkStorageCard } from "../../redux/reducers/profile_reducer";
 
 
 
 let Order = (props) => {
+  if(!props.profilePage.isCard && localStorage.card){
+    props.checkStorageCard()
+  }
   return (
     <div className={all.order}>
       <Header />
@@ -37,5 +41,5 @@ let mapStateToProps = (state) => {
 
 export default compose(
   withRouter,
-  connect(mapStateToProps, null)
+  connect(mapStateToProps, {checkStorageCard})
 )(Order);

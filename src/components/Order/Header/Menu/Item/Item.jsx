@@ -10,7 +10,7 @@ let Item = props => {
         to={`/welcome`}
         onClick={()=>{
           props.logout();
-          localStorage.removeItem('token');
+          localStorage.clear();
         }}
         className={all.item__link}
       >

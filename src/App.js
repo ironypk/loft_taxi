@@ -1,5 +1,6 @@
 import React from "react";
 import "./App.css";
+import './style/commonForm.css';
 import Welcome from "./components/Welcome/Welcome";
 import Order from "./components/Order/Order";
 import { Route, Redirect, Switch, BrowserRouter } from "react-router-dom";
@@ -15,6 +16,7 @@ let App = props => {
         <Route path="/order" component={Order} />
       </Switch>
       {props.isLoggedIn ? <Redirect to="/order/map" /> : <Redirect to="/welcome" />}
+      {localStorage.isLoggedIn ? <Redirect to="/order/map" /> : <Redirect to="/welcome" /> }
     </div>
   );
 };

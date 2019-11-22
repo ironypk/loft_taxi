@@ -1,86 +1,148 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import style from "./TakeTaxi.module.css";
-import { Field, change } from "redux-form";
-import styleButton from "../Profile/Profile.module.css";
-
 
 let PathList = props => {
   return (
     <ul className={style.path_list}>
-      {props.path.map(path => (
-        <li
-          onClick={() => {
-            props.takePlaceFrom
-              ? props.takePlaceFrom(path)
-              : props.takePlaceTo(path);
-          }}
-          key={path.id}
-          className={style.path_item}
-        >
-          {path.place}
-        </li>
-      ))}
+      {props.adressList.map(item => {
+        switch (props.currentField) {
+          case "from": {
+            if (props.isMatching(item, props.from) && item !== props.to) {
+              return (
+                <li
+                  onClick={() => {
+                    props.onChangeRouteFrom(item);
+                    props.setCurrentField(null);
+                  }}
+                  key={item.toString()}
+                  className={style.path_item}
+                >
+                  {item}
+                </li>
+              );
+            } else {
+              return null;
+            }
+          }
+
+          case "to": {
+            if (props.isMatching(item, props.to) && item !== props.from) {
+              return (
+                <li
+                  onClick={() => {
+                    props.onChangeRouteTo(item);
+                    props.setCurrentField(null);
+                  }}
+                  key={item.toString()}
+                  className={style.path_item}
+                >
+                  {item}
+                </li>
+              );
+            } else {
+              return null;
+            }
+          }
+          default:
+            return null;
+        }
+      })}
     </ul>
   );
 };
 
 let TakeTaxiForm = props => {
-  if(props.path.length === 0){
-    props.fetchAdressList()
-  }
-  let [to, setTo] = useState(false);
-  let [from, setFrom] = useState(false);
-  let takePlaceFrom = path => {
-    props.dispatch(change("taxi", "from", path.place));
-    setFrom(false);
+  useEffect(() => {
+    props.fetchAdressList();
+  }, []);
+
+  let [currentField, setCurrentField] = useState();
+
+  let formRef = React.createRef();
+
+  let onSubmit = e => {
+    e.preventDefault(props.getRoute());
   };
-  let takePlaceTo = path => {
-    props.dispatch(change("taxi", "to", path.place));
-    setTo(false);
+
+  let onChangeRouteFrom = () => {
+    let routeValue = formRef.current.elements.from.value;
+    props.onChangeRouteFrom(routeValue);
+  };
+
+  let onChangeRouteTo = () => {
+    let routeValue = formRef.current.elements.to.value;
+    props.onChangeRouteTo(routeValue);
+  };
+
+  let isMatching = (full, chunk = "") => {
+    chunk = chunk.toLowerCase();
+    full = full.toLowerCase();
+    if (full.indexOf(chunk) !== -1) {
+      return true;
+    }
+    return false;
   };
 
   return (
-    <form onSubmit={props.handleSubmit} className={style.take_taxi}>
+    <form
+      ref={formRef}
+      onSubmit={onSubmit}
+      className={`${style.take_taxi} form`}
+    >
       <div className={style.take_taxi__label_wrapper}>
-        <label className={style.take_taxi__label}>
-          <div className={style.take_taxi__text}>Откуда</div>
-          <div className={style.take_taxi__input_wrapper}>
-            <Field
+        <label className="label">
+          <div className="label_title">Откуда</div>
+          <div className="input_wrapper">
+            <input
+              onChange={onChangeRouteFrom}
+              value={props.from}
               onFocus={() => {
-                setFrom(true);
+                setCurrentField("from");
               }}
-              className={style.take_taxi__input}
-              component="input"
+              className="input"
               name="from"
               required
             />
           </div>
         </label>
-        {from === true && <PathList takePlaceFrom={takePlaceFrom} {...props} />}
+        {currentField === "from" && (
+          <PathList
+            currentField={currentField}
+            setCurrentField={setCurrentField}
+            isMatching={isMatching}
+            {...props}
+          />
+        )}
       </div>
       <div className={style.take_taxi__label_wrapper}>
-        <label className={style.take_taxi__label}>
-          <div className={style.take_taxi__text}>Куда</div>
-          <div className={style.take_taxi__input_wrapper}>
-            <Field
+        <label className="label">
+          <div className="label_title">Куда</div>
+          <div className="input_wrapper">
+            <input
+              onChange={onChangeRouteTo}
+              value={props.to}
               onFocus={() => {
-                setTo(true);
+                setCurrentField("to");
               }}
-              className={style.take_taxi__input}
-              component="input"
+              className="input"
               name="to"
               required
             />
           </div>
         </label>
-        {to === true && <PathList takePlaceTo={takePlaceTo} {...props} />}
+        {currentField === "to" && (
+          <PathList
+            isMatching={isMatching}
+            currentField={currentField}
+            setCurrentField={setCurrentField}
+            {...props}
+          />
+        )}
       </div>
 
-      <button className={styleButton.btn}>Закзать</button>
+      <button className="btn">Закзать</button>
     </form>
   );
 };
-
-
 
 export default TakeTaxiForm;

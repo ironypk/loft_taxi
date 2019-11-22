@@ -3,15 +3,19 @@ import { createAction } from "redux-actions";
 const FETCH_ADRESS_LIST = "FETCH_ADRESS_LIST";
 const FETCH_ADRESS_LIST_SUCCESS = "FETCH_ADRESS_LIST_SUCCESS";
 const FETCH_ADRESS_LIST_ERROR = "FETCH_ADRESS_LIST_ERROR";
-const FILTER_ADRESS_LIST = "FILTER_ADRESS_LIST";
 const GET_ROUTE = "GET_ROUTE";
+const GET_ROUTE_SUCCESS = 'GET_ROUTE_SUCCESS';
+const ON_CHANGE_ROUTE_FROM = 'ON_CHANGE_ROUTE_FROM'
+const ON_CHANGE_ROUTE_TO = 'ON_CHANGE_ROUTE_TO'
+
 
 let initialState = {
-  path: [],
+  adressList: [],
   route: {
     to: "",
     from: ""
-  }
+  },
+  coord : ''
 };
 
 const taxiReducer = (state = initialState, action) => {
@@ -25,29 +29,39 @@ const taxiReducer = (state = initialState, action) => {
     case FETCH_ADRESS_LIST_SUCCESS: {
       return {
         ...state,
-        path: action.payload.map((path, index) => {
-          return { id: index, place: path };
+        adressList: action.payload.map(item => {
+          return item;
         })
       };
     }
 
     case GET_ROUTE: {
       return {
-        ...state,
-        route: {
-          ...state.route,
-          from: action.payload.from,
-          to: action.payload.to
-        }
+        ...state
       };
     }
 
-    // case FILTER_ADRESS_LIST : {
-    //   return{
-    //     ...state,
-    //     path : state.path.filter(path => path.place !== action.payload.place)
-    //   }
-    // }
+    case GET_ROUTE_SUCCESS : {
+      return {
+        ...state,
+        coord : action.payload
+      }
+    }
+
+
+    case ON_CHANGE_ROUTE_FROM : {
+      return {
+        ...state,
+        route :{ ...state.route, from : action.payload}
+      }
+    }
+
+    case ON_CHANGE_ROUTE_TO : {
+      return {
+        ...state,
+        route :{ ...state.route, to : action.payload}
+      }
+    }
 
     case FETCH_ADRESS_LIST_ERROR: {
       return {
@@ -62,9 +76,14 @@ const taxiReducer = (state = initialState, action) => {
 
 export default taxiReducer;
 
+export const getRouteSuccess = createAction(GET_ROUTE_SUCCESS)
+
 export const getRoute = createAction(GET_ROUTE);
 
-export const filterAdressList = createAction(FILTER_ADRESS_LIST);
+
+export const onChangeRouteFrom = createAction(ON_CHANGE_ROUTE_FROM)
+export const onChangeRouteTo = createAction(ON_CHANGE_ROUTE_TO)
+
 export const fetchAdressList = createAction(FETCH_ADRESS_LIST);
 export const fetchAdressListSuccess = createAction(FETCH_ADRESS_LIST_SUCCESS);
 export const fetchAdressListError = createAction(FETCH_ADRESS_LIST_ERROR);

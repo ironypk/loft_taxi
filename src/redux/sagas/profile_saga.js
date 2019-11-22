@@ -18,6 +18,7 @@ export function* profileSaga() {
       alert(error);
       yield put(saveCardError())
     } else {
+        localStorage.setItem('card', JSON.stringify(card))
         yield put(saveCardSuccess());
     }
   });
