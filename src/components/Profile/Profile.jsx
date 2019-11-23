@@ -6,15 +6,15 @@ import { Field } from "redux-form";
 
 let CardSuccessForm = props => {
   return (
-    <div>
-      <div>Платежные данные обновлены</div>
+    <div className={`redirect_form ${style.redirect_form__card__success}`}>
+      <div className='redirect_form__title'>Платежные данные обновлены</div>
 
         <button
           onClick={() => {
             props.toggleForm(false);
             props.history.push('/order/map')
           }}
-          className={style.btn}
+          className='btn'
         >
           перейти на карту
         </button>

@@ -4,10 +4,11 @@ const FETCH_ADRESS_LIST = "FETCH_ADRESS_LIST";
 const FETCH_ADRESS_LIST_SUCCESS = "FETCH_ADRESS_LIST_SUCCESS";
 const FETCH_ADRESS_LIST_ERROR = "FETCH_ADRESS_LIST_ERROR";
 const GET_ROUTE = "GET_ROUTE";
-const GET_ROUTE_SUCCESS = 'GET_ROUTE_SUCCESS';
-const ON_CHANGE_ROUTE_FROM = 'ON_CHANGE_ROUTE_FROM'
-const ON_CHANGE_ROUTE_TO = 'ON_CHANGE_ROUTE_TO'
-
+const GET_ROUTE_SUCCESS = "GET_ROUTE_SUCCESS";
+const ON_CHANGE_ROUTE_FROM = "ON_CHANGE_ROUTE_FROM";
+const ON_CHANGE_ROUTE_TO = "ON_CHANGE_ROUTE_TO";
+const GET_MAP = "GET_MAP";
+const GET_NEW_ROUTE = 'GET_NEW_ROUTE'
 
 let initialState = {
   adressList: [],
@@ -15,11 +16,12 @@ let initialState = {
     to: "",
     from: ""
   },
-  coord : ''
+  isRoute: false,
+  map: ""
 };
-
 const taxiReducer = (state = initialState, action) => {
   switch (action.type) {
+
     case FETCH_ADRESS_LIST: {
       return {
         ...state
@@ -41,26 +43,41 @@ const taxiReducer = (state = initialState, action) => {
       };
     }
 
-    case GET_ROUTE_SUCCESS : {
+
+    case GET_MAP : {
       return {
         ...state,
-        coord : action.payload
+        map : action.payload
       }
     }
 
-
-    case ON_CHANGE_ROUTE_FROM : {
+    case GET_ROUTE_SUCCESS: {
       return {
         ...state,
-        route :{ ...state.route, from : action.payload}
-      }
+        isRoute : true
+      };
     }
 
-    case ON_CHANGE_ROUTE_TO : {
+    case GET_NEW_ROUTE: {
       return {
         ...state,
-        route :{ ...state.route, to : action.payload}
-      }
+        isRoute : false,
+        route : {...state.route, to:'', from:''}
+      };
+    }
+
+    case ON_CHANGE_ROUTE_FROM: {
+      return {
+        ...state,
+        route: { ...state.route, from: action.payload }
+      };
+    }
+
+    case ON_CHANGE_ROUTE_TO: {
+      return {
+        ...state,
+        route: { ...state.route, to: action.payload }
+      };
     }
 
     case FETCH_ADRESS_LIST_ERROR: {
@@ -76,13 +93,16 @@ const taxiReducer = (state = initialState, action) => {
 
 export default taxiReducer;
 
-export const getRouteSuccess = createAction(GET_ROUTE_SUCCESS)
+export const getNewRoute = createAction(GET_NEW_ROUTE)
+
+export const getMap = createAction(GET_MAP);
+
+export const getRouteSuccess = createAction(GET_ROUTE_SUCCESS);
 
 export const getRoute = createAction(GET_ROUTE);
 
-
-export const onChangeRouteFrom = createAction(ON_CHANGE_ROUTE_FROM)
-export const onChangeRouteTo = createAction(ON_CHANGE_ROUTE_TO)
+export const onChangeRouteFrom = createAction(ON_CHANGE_ROUTE_FROM);
+export const onChangeRouteTo = createAction(ON_CHANGE_ROUTE_TO);
 
 export const fetchAdressList = createAction(FETCH_ADRESS_LIST);
 export const fetchAdressListSuccess = createAction(FETCH_ADRESS_LIST_SUCCESS);

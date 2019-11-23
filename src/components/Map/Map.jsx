@@ -1,52 +1,55 @@
-import React, { useState } from "react";
-import ReactMapGl, { Layer, Feature } from "react-map-gl";
-import { connect } from "react-redux";
+import React from "react";
+import style from "./Map.module.css";
+import mapboxgl from "mapbox-gl";
+import RequestCard from "../RequestCard/RequestCard";
+import TakeTaxiContainer from "../TakeTaxi/TakeTaxiContainer";
+import GetNewRoute from "../GetNewRoute/GetNewRoute";
 
-let Maps = props => {
-  const TOKEN =
-    "pk.eyJ1IjoiaXJvbnlwayIsImEiOiJjazJqbXNubXMxOGYyM2hudG9jbDk5YjNvIn0.j2u3tq3iMynj-Xl6GwXHqw";
-  const [viewport, setViewport] = useState({
-    latitude: 55.7983,
-    longitude: 37.6111,
-    height: "100vh",
-    width: "100vw",
-    zoom: 10
-  });
-  return (
-    <div>
-      <ReactMapGl
-        mapStyle="mapbox://styles/mapbox/streets-v9"
-        {...viewport}
-        onViewportChange={viewport => {
-          setViewport(viewport);
-        }}
-        mapboxApiAccessToken={TOKEN}
-      >
-      </ReactMapGl>
-    </div>
-  );
-};
-let mapStateToProps = state => {
-  return {
-    coord: state.taxi.coord
-  };
-};
-export default connect(mapStateToProps, null)(Maps);
+mapboxgl.accessToken =
+  "pk.eyJ1IjoiaXJvbnlwayIsImEiOiJjazJqbXNubXMxOGYyM2hudG9jbDk5YjNvIn0.j2u3tq3iMynj-Xl6GwXHqw";
 
-// export const drawRoute = (map, coordinates) => {
-//   map.flyTo({ center: coordinates[0], zoom: 15 });
-//   map.addLayer({
-//     id: "route",
-//     type: "line",
-//     source: {
-//       type: "geojson",
-//       data: {
-//         type: "Feature",
-//         properties: {},
-//         geometry: { type: "LineString", coordinates }
-//       }
-//     },
-//     layout: { "line-join": "round", "line-cap": "round" },
-//     paint: { "line-color": "#ffc617", "line-width": 8 }
-//   });
-// };
+class Maps extends React.Component {
+  map;
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      latitude: 55.7983,
+      longitude: 37.6111,
+      zoom: 10
+    };
+  }
+  
+
+  componentDidMount() {
+    this.map = new mapboxgl.Map({
+      container: this.mapContainer,
+      style: "mapbox://styles/mapbox/streets-v9",
+      center: [this.state.longitude, this.state.latitude],
+      zoom: this.state.zoom,
+      height: this.state.height,
+      width: this.state.width
+    });
+    this.props.getMap(this.map);
+
+    if(!this.props.isCard && localStorage.card){
+      this.props.checkStorageCard()
+    }
+  }
+
+  render() {
+    return (
+      <div>
+        {!this.props.isCard && !this.props.isRoute ? <RequestCard /> : null}
+        {this.props.isCard && !this.props.isRoute ? <TakeTaxiContainer /> : null}
+        {this.props.isRoute ? <GetNewRoute/> : null}
+        <div
+          ref={el => (this.mapContainer = el)}
+          className={style.map_container}
+        />
+      </div>
+    );
+  }
+}
+
+export default Maps;

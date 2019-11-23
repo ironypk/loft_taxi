@@ -1,4 +1,5 @@
 import React from "react";
+import './style/redirectForm.css';
 import "./App.css";
 import './style/commonForm.css';
 import Welcome from "./components/Welcome/Welcome";
