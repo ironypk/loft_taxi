@@ -20,6 +20,7 @@ let LoginForm = props => {
           <div className={all.label_title}>Email пользователя*</div>
           <div className={all.input_wrapper}>
             <Field
+              data-testid='email_input'
               component="input"
               name="email"
               className={all.input}
@@ -33,6 +34,7 @@ let LoginForm = props => {
             <Field
               component="input"
               name="password"
+              type='password'
               className={all.input}
               required
             ></Field>

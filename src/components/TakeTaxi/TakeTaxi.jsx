@@ -87,12 +87,12 @@ let TakeTaxiForm = props => {
     <form
       ref={formRef}
       onSubmit={onSubmit}
-      className={`${style.take_taxi} form`}
+      className={`take_taxi redirect_form`}
     >
       <div className={style.take_taxi__label_wrapper}>
-        <label className="label">
+        <label  className="label">
           <div className="label_title">Откуда</div>
-          <div className="input_wrapper">
+          <div   className={`input_wrapper ${style.take_taxi__input_wrapper} ${style.take_taxi__input_wrapper_from}`}>
             <input
               onChange={onChangeRouteFrom}
               value={props.from}
@@ -103,10 +103,14 @@ let TakeTaxiForm = props => {
               name="from"
               required
             />
+            <div onClick={()=>{
+              props.clearInputFrom()
+            }} className={style.clear_btn}></div>
           </div>
         </label>
         {currentField === "from" && (
           <PathList
+            className={`${style.path_list_from}`}
             currentField={currentField}
             setCurrentField={setCurrentField}
             isMatching={isMatching}
@@ -117,7 +121,7 @@ let TakeTaxiForm = props => {
       <div className={style.take_taxi__label_wrapper}>
         <label className="label">
           <div className="label_title">Куда</div>
-          <div className="input_wrapper">
+          <div className={`input_wrapper ${style.take_taxi__input_wrapper}`}>
             <input
               onChange={onChangeRouteTo}
               value={props.to}
@@ -128,6 +132,9 @@ let TakeTaxiForm = props => {
               name="to"
               required
             />
+            <div onClick={()=>{
+              props.clearInputTo()
+            }} className={style.clear_btn}></div>
           </div>
         </label>
         {currentField === "to" && (
@@ -140,7 +147,7 @@ let TakeTaxiForm = props => {
         )}
       </div>
 
-      <button className="btn">Закзать</button>
+      <button disabled={props.from.length === 0 || props.to.length === 0} className="btn">Закзать</button>
     </form>
   );
 };

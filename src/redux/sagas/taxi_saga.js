@@ -1,4 +1,4 @@
-import { takeEvery, call, put, select } from "redux-saga/effects";
+import { takeEvery, call, put } from "redux-saga/effects";
 import { fetchAdressList, fetchAdressListError, fetchAdressListSuccess } from "../reducers/taxi_reducer";
 import * as Axios from "axios";
 

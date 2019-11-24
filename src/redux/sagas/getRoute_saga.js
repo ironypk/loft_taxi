@@ -31,7 +31,7 @@ const drawRoute = (map, coordinates) => {
 export function* getRouteSaga() {
   yield takeEvery(getRoute, function*() {
     let {
-        taxi: { route, map, isRoute }
+        taxi: { route, map }
       } = yield select();
     const data = yield call(getRequest, route);
     if (!data.length) {

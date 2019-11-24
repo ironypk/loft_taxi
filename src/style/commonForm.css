@@ -25,6 +25,7 @@
 }
 
 .input_wrapper {
+  position: relative;
   border-bottom: 1px solid #eaeaea;
 }
 

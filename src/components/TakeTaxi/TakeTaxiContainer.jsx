@@ -1,4 +1,3 @@
-import React from "react";
 import { withRouter } from "react-router-dom";
 import { compose } from "redux";
 import { connect } from "react-redux";
@@ -7,7 +6,9 @@ import {
   fetchAdressList,
   getRoute,
   onChangeRouteFrom,
-  onChangeRouteTo
+  onChangeRouteTo,
+  clearInputFrom,
+  clearInputTo
 
 } from "../../redux/reducers/taxi_reducer";
 
@@ -23,5 +24,5 @@ let mapStatetoProps = state => {
 
 export default compose(
   withRouter,
-  connect(mapStatetoProps, { fetchAdressList, onChangeRouteFrom, onChangeRouteTo, getRoute })
+  connect(mapStatetoProps, { fetchAdressList, onChangeRouteFrom, onChangeRouteTo, getRoute, clearInputFrom, clearInputTo })
 )(TakeTaxiForm);

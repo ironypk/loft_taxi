@@ -9,6 +9,8 @@ const ON_CHANGE_ROUTE_FROM = "ON_CHANGE_ROUTE_FROM";
 const ON_CHANGE_ROUTE_TO = "ON_CHANGE_ROUTE_TO";
 const GET_MAP = "GET_MAP";
 const GET_NEW_ROUTE = 'GET_NEW_ROUTE'
+const CLEAR_INPUT_FROM = 'CLEAR_INPUT_FROM'
+const CLEAR_INPUT_TO = 'CLEAR_INPUT_TO'
 
 let initialState = {
   adressList: [],
@@ -86,12 +88,31 @@ const taxiReducer = (state = initialState, action) => {
       };
     }
 
+    case CLEAR_INPUT_FROM:{
+      return {
+        ...state,
+        route: {...state.route , from: ''}
+      }
+    }
+
+
+    case CLEAR_INPUT_TO:{
+      return {
+        ...state,
+        route: {...state.route , to: ''}
+      }
+    }
+
     default:
       return state;
   }
 };
 
 export default taxiReducer;
+
+export const clearInputFrom = createAction(CLEAR_INPUT_FROM)
+
+export const clearInputTo = createAction(CLEAR_INPUT_TO)
 
 export const getNewRoute = createAction(GET_NEW_ROUTE)
 
