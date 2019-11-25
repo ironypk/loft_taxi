@@ -2,15 +2,14 @@ import { takeEvery, call, put, select } from "redux-saga/effects";
 import { getRoute, getRouteSuccess } from "../reducers/taxi_reducer";
 import * as Axios from "axios";
 
-let getRequest = (route) => {
-  return Axios.get(`https://loft-taxi.glitch.me/route?address1=${route.from}&address2=${route.to}`).then(
-    response => response.data
-  );
+let  getRequest = async (route) => {
+    let {data} = await Axios.get(`https://loft-taxi.glitch.me/route?address1=${route.from}&address2=${route.to}`)
+    return data
 };
 
 const drawRoute = (map, coordinates) => {
   map.flyTo({ center: coordinates[0], zoom: 15 });
-  map.addLayer({
+  map.addLayer( {
     id: "route",
     type: "line",
     source: {

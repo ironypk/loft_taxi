@@ -2,10 +2,9 @@ import { takeEvery, call, put } from "redux-saga/effects";
 import { fetchAdressList, fetchAdressListError, fetchAdressListSuccess } from "../reducers/taxi_reducer";
 import * as Axios from "axios";
 
-let getRequest = () => {
-  return Axios.get("https://loft-taxi.glitch.me/addressList").then(
-    response => response.data
-  );
+let getRequest = async () => {
+  let {data} = await Axios.get("https://loft-taxi.glitch.me/addressList")
+  return data
 };
 
 

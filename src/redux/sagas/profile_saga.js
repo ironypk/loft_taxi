@@ -2,10 +2,9 @@ import { takeEvery, call, put, select } from "redux-saga/effects";
 import { saveCard, saveCardError, saveCardSuccess } from "../reducers/profile_reducer";
 import * as Axios from "axios";
 
-let postRequest = card => {
-  return Axios.post("https://loft-taxi.glitch.me/card", card).then(
-    response => response.data
-  );
+let postRequest = async card => {
+  let {data} = await Axios.post("https://loft-taxi.glitch.me/card", card)
+  return data
 };
 
 export function* profileSaga() {

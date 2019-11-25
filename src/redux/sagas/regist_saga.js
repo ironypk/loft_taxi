@@ -3,10 +3,9 @@ import { regist, registSucces, registError } from "../reducers/regist_reducer";
 import { loginSuccess } from "../reducers/login_reducer";
 import * as Axios from "axios";
 
-let postRequest = user => {
-  return Axios.post("https://loft-taxi.glitch.me/register", user).then(
-    response => response.data
-  );
+let postRequest = async user => {
+ let {data} = await  Axios.post("https://loft-taxi.glitch.me/register", user)
+ return data
 };
 
 export function* registSaga() {

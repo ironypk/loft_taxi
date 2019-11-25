@@ -3,10 +3,9 @@ import { login, loginSuccess, loginError } from "../reducers/login_reducer";
 import {setToken} from '../reducers/profile_reducer'
 import * as Axios from "axios";
 
-let postRequest = user => {
-  return Axios.post("https://loft-taxi.glitch.me/auth", user).then(
-    response => response.data
-  );
+let postRequest = async user => {
+  let {data} = await Axios.post("https://loft-taxi.glitch.me/auth", user)
+  return data
 };
 export function* loginSaga() {
   yield takeEvery(login, function*() {

@@ -7,7 +7,7 @@ import { reduxForm, Field } from "redux-form";
 
 let LoginForm = props => {
   return (
-      <form onSubmit={props.handleSubmit} className={all.form}>
+      <form onSubmit={props.handleSubmit} className={`${all.welcome_form} form`}>
         {props.isFetching ? <Preloader /> : null}
         <div className={all.head}>Войти</div>
         <div className={all.redirect}>
@@ -16,31 +16,31 @@ let LoginForm = props => {
             Зарегистрируйтесь
           </Link>
         </div>
-        <label className={all.label}>
-          <div className={all.label_title}>Email пользователя*</div>
-          <div className={all.input_wrapper}>
+        <label className='label'>
+          <div className='label_title'>Email пользователя*</div>
+          <div className='input_wrapper'>
             <Field
               data-testid='email_input'
               component="input"
               name="email"
-              className={all.input}
+              className='input'
               required
             />
           </div>
         </label>
-        <label className={all.label}>
-          <div className={all.label_title}>Пароль*</div>
-          <div className={all.input_wrapper}>
+        <label className='label'>
+          <div className='label_title'>Пароль*</div>
+          <div className='input_wrapper'>
             <Field
               component="input"
               name="password"
               type='password'
-              className={all.input}
+              className='input'
               required
             ></Field>
           </div>
         </label>
-        <button className={all.btn}>Войти</button>
+        <button className={`${all.welcome_btn} btn`}>Войти</button>
       </form>
   );
 };

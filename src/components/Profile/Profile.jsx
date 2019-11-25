@@ -24,11 +24,8 @@ let CardSuccessForm = props => {
 };
 
 let ProfileForm = props => {
-  // if(props.card){
-  //   props.initialize(props.card)
-  // }
   return (
-    <form onSubmit={props.handleSubmit} className={style.payment}>
+    <form onSubmit={props.handleSubmit} className={`${style.payment} form`}>
       {props.isFetching ? <Preloader /> : null}
       <div className={style.payment__header}>
         <h3 className={style.payment__head}>Профиль</h3>
@@ -36,12 +33,12 @@ let ProfileForm = props => {
       </div>
       <div className={style.payment__card_wrapper}>
         <div className={`${style.card} ${style.card_front}`}>
-          <label className={style.card__row}>
-            <div className={style.card__row_title}>Номер карты</div>
-            <div className={style.card__input_wrapper}>
+          <label className='label'>
+            <div className='label_title'>Номер карты</div>
+            <div className='input_wrapper'>
               <Field
                 component="input"
-                className={style.card__input}
+                className={`${style.card__input} input`}
                 type="number"
                 name="number"
                 placeholder="Введите номер карты"
@@ -49,12 +46,12 @@ let ProfileForm = props => {
               />
             </div>
           </label>
-          <label className={style.card__row}>
-            <div className={style.card__row_title}>Срок действия</div>
-            <div className={style.card__input_wrapper}>
+          <label className='label'>
+            <div className='label_title'>Срок действия</div>
+            <div className='input_wrapper'>
               <Field
                 component="input"
-                className={style.card__input}
+                className={`${style.card__input} input`}
                 type="number"
                 name="date"
                 placeholder="00/00"
@@ -64,24 +61,24 @@ let ProfileForm = props => {
           </label>
         </div>
         <div className={`${style.card} ${style.card_back}`}>
-          <label className={style.card__row}>
-            <div className={style.card__row_title}>Имя владельца</div>
-            <div className={style.card__input_wrapper}>
+          <label className='label'>
+            <div className='label_title'>Имя владельца</div>
+            <div className='input_wrapper'>
               <Field
                 component="input"
-                className={style.card__input}
+                className={`${style.card__input} input`}
                 name="name"
                 placeholder="Введите имя владельца"
                 required
               />
             </div>
           </label>
-          <label className={style.card__row}>
-            <div className={style.card__row_title}>CVC</div>
-            <div className={style.card__input_wrapper}>
+          <label className='label'>
+            <div className='label_title'>CVC</div>
+            <div className='input_wrapper'>
               <Field
                 component="input"
-                className={style.card__input}
+                className={`${style.card__input} input`}
                 type="number"
                 name="cvc"
                 placeholder="***"
@@ -91,7 +88,7 @@ let ProfileForm = props => {
           </label>
         </div>
       </div>
-      <button className={style.btn}>Сохранить</button>
+      <button className='btn'>Сохранить</button>
     </form>
   );
 };

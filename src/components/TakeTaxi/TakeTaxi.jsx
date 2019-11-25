@@ -1,55 +1,6 @@
 import React, { useState, useEffect } from "react";
 import style from "./TakeTaxi.module.css";
-
-let PathList = props => {
-  return (
-    <ul className={style.path_list}>
-      {props.adressList.map(item => {
-        switch (props.currentField) {
-          case "from": {
-            if (props.isMatching(item, props.from) && item !== props.to) {
-              return (
-                <li
-                  onClick={() => {
-                    props.onChangeRouteFrom(item);
-                    props.setCurrentField(null);
-                  }}
-                  key={item.toString()}
-                  className={style.path_item}
-                >
-                  {item}
-                </li>
-              );
-            } else {
-              return null;
-            }
-          }
-
-          case "to": {
-            if (props.isMatching(item, props.to) && item !== props.from) {
-              return (
-                <li
-                  onClick={() => {
-                    props.onChangeRouteTo(item);
-                    props.setCurrentField(null);
-                  }}
-                  key={item.toString()}
-                  className={style.path_item}
-                >
-                  {item}
-                </li>
-              );
-            } else {
-              return null;
-            }
-          }
-          default:
-            return null;
-        }
-      })}
-    </ul>
-  );
-};
+import AdressList from "./AdressList";
 
 let TakeTaxiForm = props => {
   useEffect(() => {
@@ -90,9 +41,11 @@ let TakeTaxiForm = props => {
       className={`take_taxi redirect_form`}
     >
       <div className={style.take_taxi__label_wrapper}>
-        <label  className="label">
+        <label className="label">
           <div className="label_title">Откуда</div>
-          <div   className={`input_wrapper ${style.take_taxi__input_wrapper} ${style.take_taxi__input_wrapper_from}`}>
+          <div
+            className={`input_wrapper ${style.take_taxi__input_wrapper} ${style.take_taxi__input_wrapper_from}`}
+          >
             <input
               onChange={onChangeRouteFrom}
               value={props.from}
@@ -103,13 +56,16 @@ let TakeTaxiForm = props => {
               name="from"
               required
             />
-            <div onClick={()=>{
-              props.clearInputFrom()
-            }} className={style.clear_btn}></div>
+            <div
+              onClick={() => {
+                props.clearInputFrom();
+              }}
+              className={style.clear_btn}
+            ></div>
           </div>
         </label>
         {currentField === "from" && (
-          <PathList
+          <AdressList
             className={`${style.path_list_from}`}
             currentField={currentField}
             setCurrentField={setCurrentField}
@@ -132,13 +88,16 @@ let TakeTaxiForm = props => {
               name="to"
               required
             />
-            <div onClick={()=>{
-              props.clearInputTo()
-            }} className={style.clear_btn}></div>
+            <div
+              onClick={() => {
+                props.clearInputTo();
+              }}
+              className={style.clear_btn}
+            ></div>
           </div>
         </label>
         {currentField === "to" && (
-          <PathList
+          <AdressList
             isMatching={isMatching}
             currentField={currentField}
             setCurrentField={setCurrentField}
@@ -147,7 +106,12 @@ let TakeTaxiForm = props => {
         )}
       </div>
 
-      <button disabled={props.from.length === 0 || props.to.length === 0} className="btn">Закзать</button>
+      <button
+        disabled={props.from.length === 0 || props.to.length === 0}
+        className="btn"
+      >
+        Закзать
+      </button>
     </form>
   );
 };

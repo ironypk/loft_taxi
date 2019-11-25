@@ -8,7 +8,7 @@ import { reduxForm, Field } from "redux-form";
 
 let RegistForm = props => {
   return (
-    <form onSubmit={props.handleSubmit} className={all.form}>
+    <form onSubmit={props.handleSubmit} className={`${all.welcome_form} form`}>
       {props.isFetching ? <Preloader /> : null}
       <div className={all.head}>Регистрация</div>
       <div className={all.redirect}>
@@ -17,43 +17,43 @@ let RegistForm = props => {
           Войти
         </Link>
       </div>
-      <label className={all.label}>
-        <div className={all.label_title}>Адрес электронной почты</div>
-        <div className={all.input_wrapper}>
+      <label className='label'>
+        <div className='label_title'>Адрес электронной почты</div>
+        <div className='input_wrapper'>
           <Field
             component="input"
             required
             name="email"
-            className={all.input}
+            className='input'
           />
         </div>
       </label>
       <div className={own.user_data}>
-        <label className={`${all.label} ${own.name}`}>
-          <div className={all.label_title}>Имя</div>
-          <div className={all.input_wrapper}>
+        <label className={`${own.name} label`}>
+          <div className='label_title'>Имя</div>
+          <div className='input_wrapper'>
             <Field
               component="input"
               name="name"
               required
-              className={all.input}
+              className='input'
             />
           </div>
         </label>
-        <label className={all.label}>
-          <div className={all.label_title}>Фамилия</div>
-          <div className={all.input_wrapper}>
-            <Field component="input" name="surname" className={all.input} />
+        <label className='label'>
+          <div className='label_title'>Фамилия</div>
+          <div className='input_wrapper'>
+            <Field component="input" name="surname" className='input' />
           </div>
         </label>
       </div>
-      <label className={all.label}>
-        <div className={all.label_title}>Пароль</div>
-        <div className={all.input_wrapper}>
-          <Field component="input" name="password" className={all.input} />
+      <label className='label'>
+        <div className='label_title'>Пароль</div>
+        <div className='input_wrapper'>
+          <Field component="input" name="password" className='input'  />
         </div>
       </label>
-      <button className={all.btn}>Зарегистрироваться</button>
+      <button className={`${all.welcome_btn} btn`}>Зарегистрироваться</button>
     </form>
   );
 };
