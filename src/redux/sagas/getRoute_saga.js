@@ -3,8 +3,13 @@ import { getRoute, getRouteSuccess } from "../reducers/taxi_reducer";
 import * as Axios from "axios";
 
 let  getRequest = async (route) => {
+  try{
     let {data} = await Axios.get(`https://loft-taxi.glitch.me/route?address1=${route.from}&address2=${route.to}`)
     return data
+  }catch(error){
+    alert(error)
+  }
+
 };
 
 const drawRoute = (map, coordinates) => {
@@ -32,12 +37,15 @@ export function* getRouteSaga() {
     let {
         taxi: { route, map }
       } = yield select();
-    const data = yield call(getRequest, route);
-    if (!data.length) {
-      alert('путь не найдет');
-    } else {
-      yield drawRoute(map, data)
-      yield put(getRouteSuccess(true))
-    }
+      try{
+        const data = yield call(getRequest, route);
+        if (!data.length) {
+          alert('путь не найдет');
+        } else {
+          yield drawRoute(map, data)
+          yield put(getRouteSuccess(true))
+        }
+      }catch(error){;
+      }
    });
 }
