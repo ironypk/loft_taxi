@@ -1,0 +1,72 @@
+
+.take_taxi__label_wrapper{
+    position: relative;
+}
+
+.take_taxi__label_wrapper:not(:last-child){
+    margin-bottom: 35px;
+}
+
+.take_taxi__input_wrapper{
+  display: flex;
+  align-items: center;
+  padding-right:20px;
+}
+
+.take_taxi__input_wrapper:focus-within > .clear_btn::after,
+.take_taxi__input_wrapper:focus-within > .clear_btn::before {
+  background-color:#000;
+}
+
+/* .take_taxi__input_wrapper_from:focus-within > .path_list{
+  display: flex;
+} */
+
+.path_list {
+  display: flex;
+  z-index: 100;
+  position: absolute;
+  flex-direction: column;
+  width: 100%;
+  background-color: #fff;
+}
+
+.path_item {
+  cursor: pointer;
+  padding: 5px;
+}
+
+.path_item:hover {
+  background-color: #777;
+}
+
+
+
+.clear_btn {
+  right:0;
+  width:15px;
+  height:15px;
+  position :absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.clear_btn::after, .clear_btn::before {
+  content: '';
+  position: absolute;
+  transform: translate(-50%,-50%);
+  width:2px;
+  height:12px;
+  background-color:#999;
+}
+
+
+.clear_btn::after{
+  transform: rotate(-45deg);
+}
+
+.clear_btn::before{
+  transform: rotate(45deg);
+}
