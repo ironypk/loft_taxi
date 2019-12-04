@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "6811ac4925e557b2b1262e3df85aa221",
+    "revision": "15a471dfc8b92b9764fed96846bf15de",
     "url": "/loft_taxi/index.html"
   },
   {
-    "revision": "6adc58ae18985fe1d17e",
+    "revision": "49cc0cafddee0832f129",
     "url": "/loft_taxi/static/css/main.ce69f3fc.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/loft_taxi/static/js/2.3934d95f.chunk.js"
   },
   {
-    "revision": "6adc58ae18985fe1d17e",
-    "url": "/loft_taxi/static/js/main.afffa35e.chunk.js"
+    "revision": "49cc0cafddee0832f129",
+    "url": "/loft_taxi/static/js/main.eb536f4e.chunk.js"
   },
   {
     "revision": "fdb7c20686c6c9a2d25f",

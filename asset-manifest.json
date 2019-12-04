@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/loft_taxi/static/css/main.ce69f3fc.chunk.css",
-    "main.js": "/loft_taxi/static/js/main.afffa35e.chunk.js",
-    "main.js.map": "/loft_taxi/static/js/main.afffa35e.chunk.js.map",
+    "main.js": "/loft_taxi/static/js/main.eb536f4e.chunk.js",
+    "main.js.map": "/loft_taxi/static/js/main.eb536f4e.chunk.js.map",
     "runtime-main.js": "/loft_taxi/static/js/runtime-main.3a299afb.js",
     "runtime-main.js.map": "/loft_taxi/static/js/runtime-main.3a299afb.js.map",
     "static/js/2.3934d95f.chunk.js": "/loft_taxi/static/js/2.3934d95f.chunk.js",
     "static/js/2.3934d95f.chunk.js.map": "/loft_taxi/static/js/2.3934d95f.chunk.js.map",
     "index.html": "/loft_taxi/index.html",
-    "precache-manifest.391d9f9a98a3be59608276d587ebd71e.js": "/loft_taxi/precache-manifest.391d9f9a98a3be59608276d587ebd71e.js",
+    "precache-manifest.343b55fc03b70dd3c3296c404c01e609.js": "/loft_taxi/precache-manifest.343b55fc03b70dd3c3296c404c01e609.js",
     "service-worker.js": "/loft_taxi/service-worker.js",
     "static/css/main.ce69f3fc.chunk.css.map": "/loft_taxi/static/css/main.ce69f3fc.chunk.css.map",
     "static/media/Welcome.module.css": "/loft_taxi/static/media/Welcome.00f63568.png",
@@ -19,6 +19,6 @@
     "static/js/runtime-main.3a299afb.js",
     "static/js/2.3934d95f.chunk.js",
     "static/css/main.ce69f3fc.chunk.css",
-    "static/js/main.afffa35e.chunk.js"
+    "static/js/main.eb536f4e.chunk.js"
   ]
 }

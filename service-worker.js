@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/loft_taxi/precache-manifest.391d9f9a98a3be59608276d587ebd71e.js"
+  "/loft_taxi/precache-manifest.343b55fc03b70dd3c3296c404c01e609.js"
 );
 
 self.addEventListener('message', (event) => {
