@@ -1,0 +1,10 @@
+.item__link{
+  padding:8px 15px;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.item__link:hover{
+  background-color: #f2f2f2;
+}
+

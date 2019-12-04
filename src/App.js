@@ -1,26 +1,43 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import './style/redirectForm.css';
+import "./App.css";
+import './style/commonForm.css';
+import Welcome from "./components/Welcome/Welcome";
+import Order from "./components/Order/Order";
+import { Route, Redirect, Switch, BrowserRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import { Provider } from "react-redux";
+import store from "./redux/redux-store";
 
-function App() {
+let App = props => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div data-testid="app" className="App">
+      <Switch>
+        <Route path="/welcome" component={Welcome} />
+        <Route path="/order" component={Order} />
+      </Switch>
+      {props.isLoggedIn ? <Redirect to="/order/map" /> : <Redirect to="/welcome" />}
+      {localStorage.isLoggedIn ? <Redirect to="/order/map" /> : <Redirect to="/welcome" /> }
     </div>
   );
-}
+};
 
-export default App;
+let mapStateToProps = state => {
+  return {
+    isLoggedIn: state.loginPage.isLoggedIn
+  };
+};
+
+let AppContainer = connect(mapStateToProps, null)(App);
+
+let MyApp = () => {
+  return (
+    <BrowserRouter>
+      <Provider store={store}>
+        <AppContainer />
+      </Provider>
+    </BrowserRouter>
+  );
+};
+
+export default MyApp;

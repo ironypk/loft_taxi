@@ -2,16 +2,39 @@
   "name": "loft_taxi",
   "version": "0.1.0",
   "private": true,
+  "homepage" : "https://ironypk.github.io/loft_taxi",
   "dependencies": {
-    "react": "^16.10.2",
+    "@testing-library/jest-dom": "^4.2.3",
+    "@testing-library/react": "^9.3.2",
+    "axios": "^0.19.0",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.15.1",
+    "history": "^4.10.1",
+    "mapbox-gl": "^1.5.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.12.0",
     "react-dom": "^16.10.2",
-    "react-scripts": "3.2.0"
+    "react-map-gl": "^5.1.2",
+    "react-mapbox-gl": "^4.7.3",
+    "react-redux": "^7.1.3",
+    "react-router": "^5.1.2",
+    "react-router-dom": "^5.1.2",
+    "react-router-redux": "^4.0.8",
+    "react-scripts": "3.2.0",
+    "react-test-renderer": "^16.12.0",
+    "redux": "^4.0.4",
+    "redux-actions": "^2.6.5",
+    "redux-form": "^8.2.6",
+    "redux-mock-store": "^1.5.3",
+    "redux-saga": "^1.1.3"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy" : "npm run build",
+    "deploy" : "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -27,5 +50,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^2.1.1"
   }
 }
