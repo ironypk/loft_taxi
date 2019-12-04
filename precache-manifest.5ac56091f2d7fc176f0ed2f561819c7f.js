@@ -1,19 +1,19 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "e989b500db2de0944f8c36d9b2a45302",
+    "revision": "94445c0b5ee351513b6aa5cdfcea17ff",
     "url": "/loft_taxi/index.html"
   },
   {
-    "revision": "b5c74ef145845c79770a",
-    "url": "/loft_taxi/static/css/main.3687dd95.chunk.css"
+    "revision": "280d78385b8a91606b14",
+    "url": "/loft_taxi/static/css/main.55fb17d9.chunk.css"
   },
   {
     "revision": "08d8d8f39d0b55db9ca6",
     "url": "/loft_taxi/static/js/2.de2e0b50.chunk.js"
   },
   {
-    "revision": "b5c74ef145845c79770a",
-    "url": "/loft_taxi/static/js/main.9fe92c7e.chunk.js"
+    "revision": "280d78385b8a91606b14",
+    "url": "/loft_taxi/static/js/main.21320042.chunk.js"
   },
   {
     "revision": "fdb7c20686c6c9a2d25f",
@@ -28,7 +28,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/loft_taxi/static/media/forteMt.e0878230.woff2"
   },
   {
-    "revision": "d6b5e15842a8d926505f2b28278f840d",
-    "url": "/loft_taxi/static/media/spinner.d6b5e158.svg"
+    "revision": "396f4d789d7b8acb393a5d6d93b65618",
+    "url": "/loft_taxi/static/media/spinner.396f4d78.svg"
   }
 ]);
