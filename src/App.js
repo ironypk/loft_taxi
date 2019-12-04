@@ -1,14 +1,3 @@
-<<<<<<< HEAD
-import React from 'react';
-import './App.css';
-import Welcome from './components/welcome';
-import Order from './components/order';
-
-let App = () => {
-  return (
-    <div className="App">
-      <Welcome/>
-=======
 import React from "react";
 import './style/redirectForm.css';
 import "./App.css";
@@ -29,7 +18,6 @@ let App = props => {
       </Switch>
       {props.isLoggedIn ? <Redirect to="/order/map" /> : <Redirect to="/welcome" />}
       {localStorage.isLoggedIn ? <Redirect to="/order/map" /> : <Redirect to="/welcome" /> }
->>>>>>> 3f5ff150a38c30c68165115579b1210958696e36
     </div>
   );
 };

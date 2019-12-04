@@ -33,8 +33,6 @@ button{
   cursor: pointer;
 }
 
-<<<<<<< HEAD
-=======
 .container{
   max-width: 1250px;
 width: 100%;
@@ -42,7 +40,6 @@ min-height:100%;
 margin:0 auto;
 }
 
->>>>>>> 3f5ff150a38c30c68165115579b1210958696e36
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -57,12 +54,9 @@ code {
     monospace;
 }
 
-<<<<<<< HEAD
-=======
 input[type=number]::-webkit-inner-spin-button {
   display: none;
 }
 
->>>>>>> 3f5ff150a38c30c68165115579b1210958696e36
 @import './style/fonts.css';
 
