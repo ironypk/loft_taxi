@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/loft_taxi/static/css/main.3687dd95.chunk.css",
+    "main.js": "/loft_taxi/static/js/main.9fe92c7e.chunk.js",
+    "main.js.map": "/loft_taxi/static/js/main.9fe92c7e.chunk.js.map",
+    "runtime-main.js": "/loft_taxi/static/js/runtime-main.3a299afb.js",
+    "runtime-main.js.map": "/loft_taxi/static/js/runtime-main.3a299afb.js.map",
+    "static/js/2.de2e0b50.chunk.js": "/loft_taxi/static/js/2.de2e0b50.chunk.js",
+    "static/js/2.de2e0b50.chunk.js.map": "/loft_taxi/static/js/2.de2e0b50.chunk.js.map",
+    "index.html": "/loft_taxi/index.html",
+    "precache-manifest.bda84f15ef9f3839621259de992bda9a.js": "/loft_taxi/precache-manifest.bda84f15ef9f3839621259de992bda9a.js",
+    "service-worker.js": "/loft_taxi/service-worker.js",
+    "static/css/main.3687dd95.chunk.css.map": "/loft_taxi/static/css/main.3687dd95.chunk.css.map",
+    "static/media/Welcome.module.css": "/loft_taxi/static/media/Welcome.00f63568.png",
+    "static/media/index.css": "/loft_taxi/static/media/forteMt.e0878230.woff2",
+    "static/media/spinner.svg": "/loft_taxi/static/media/spinner.d6b5e158.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.3a299afb.js",
+    "static/js/2.de2e0b50.chunk.js",
+    "static/css/main.3687dd95.chunk.css",
+    "static/js/main.9fe92c7e.chunk.js"
+  ]
+}
