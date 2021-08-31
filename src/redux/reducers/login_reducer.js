@@ -6,8 +6,8 @@ const LOGIN_ERROR = "LOGIN_ERROR";
 
 let initialState = {
   user:{
-    email:'',
-    password: ''
+    email:'ironypk@gmail.com',
+    password: '123'
   },
   isLoggedIn: false,
   isFetching: false
